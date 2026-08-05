@@ -1,0 +1,14 @@
+POST http://localhost:8081/api/interview/submit
+Content-Type: application/json
+
+{
+  "technology":"Java",
+  "difficulty":"Beginner",
+  "answers":[
+    "Answer one is long enough to score marks.",
+    "Another long answer for testing.",
+    "Third answer is also sufficiently long.",
+    "Fourth answer for testing.",
+    "Fifth answer."
+  ]
+}
