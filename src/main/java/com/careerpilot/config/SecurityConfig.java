@@ -50,10 +50,18 @@ public class SecurityConfig {
                                 "/register.html",
                                 "/dashboard.html",
                                 "/interview.html",
+                                "/history.html",
+
                                 "/api/users/register",
                                 "/api/users/login",
+
                                 "/api/interview/start",
                                 "/api/interview/submit",
+                                "/api/interview/history",
+
+                                "/progress.html",
+                                "/api/interview/progress",
+
                                 "/css/**",
                                 "/js/**",
                                 "/images/**"

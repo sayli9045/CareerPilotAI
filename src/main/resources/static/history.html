@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Interview History</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <h2 class="text-center mb-4">
+                Interview History
+            </h2>
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                <tr>
+
+                    <th>Technology</th>
+                    <th>Difficulty</th>
+                    <th>Score</th>
+                    <th>Status</th>
+                    <th>Date</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="historyTable">
+
+                </tbody>
+
+            </table>
+
+            <div class="text-center">
+
+                <a href="dashboard.html"
+                   class="btn btn-primary">
+
+                    Back to Dashboard
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    async function loadHistory(){
+
+        const response = await fetch(
+            "http://localhost:8081/api/interview/history"
+        );
+
+        const interviews = await response.json();
+
+        let rows = "";
+
+        interviews.forEach(interview => {
+
+            rows += `
+        <tr>
+
+            <td>${interview.technology}</td>
+
+            <td>${interview.difficulty}</td>
+
+            <td>${interview.score}</td>
+
+            <td>${interview.status}</td>
+
+            <td>${interview.interviewDate}</td>
+
+        </tr>
+        `;
+
+        });
+
+        document.getElementById("historyTable").innerHTML = rows;
+
+    }
+
+    loadHistory();
+
+</script>
+
+</body>
+</html>

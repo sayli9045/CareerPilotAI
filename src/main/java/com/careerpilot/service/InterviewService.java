@@ -1,5 +1,6 @@
 package com.careerpilot.service;
 
+import com.careerpilot.dto.ProgressResponse;
 import com.careerpilot.dto.InterviewAnswerRequest;
 import com.careerpilot.dto.InterviewRequest;
 import com.careerpilot.entity.Interview;
@@ -80,5 +81,28 @@ public class InterviewService {
         interviewRepository.save(interview);
 
         return score;
+    }
+    public List<Interview> getInterviewHistory() {
+
+        return interviewRepository.findAll();
+
+    }
+    public ProgressResponse getProgress() {
+
+        ProgressResponse progress = new ProgressResponse();
+
+        progress.setTotalInterviews(interviewRepository.count());
+
+        Double average = interviewRepository.getAverageScore();
+        Integer highest = interviewRepository.getHighestScore();
+        Integer lowest = interviewRepository.getLowestScore();
+
+        progress.setAverageScore(average != null ? average : 0);
+
+        progress.setHighestScore(highest != null ? highest : 0);
+
+        progress.setLowestScore(lowest != null ? lowest : 0);
+
+        return progress;
     }
 }

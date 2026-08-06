@@ -1,5 +1,7 @@
 package com.careerpilot.controller;
 
+import com.careerpilot.dto.ProgressResponse;
+import com.careerpilot.entity.Interview;
 import com.careerpilot.dto.InterviewAnswerRequest;
 import com.careerpilot.dto.InterviewRequest;
 import com.careerpilot.service.InterviewService;
@@ -31,5 +33,17 @@ public class InterviewController {
         System.out.println("========== SUBMIT INTERVIEW API HIT ==========");
 
         return interviewService.submitInterview(request);
+    }
+    @GetMapping("/history")
+    public List<Interview> getInterviewHistory() {
+
+        return interviewService.getInterviewHistory();
+
+    }
+    @GetMapping("/progress")
+    public ProgressResponse getProgress() {
+
+        return interviewService.getProgress();
+
     }
 }
