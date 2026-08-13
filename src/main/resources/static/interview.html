@@ -1,65 +1,1499 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
-    <title>AI Interview</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>AI Interview | CareerPilotAI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family: "Segoe UI", sans-serif;
+
+            background:
+                    radial-gradient(
+                            circle at 5% 15%,
+                            #ddd6fe 0%,
+                            transparent 25%
+                    ),
+                    radial-gradient(
+                            circle at 95% 85%,
+                            #fbcfe8 0%,
+                            transparent 28%
+                    ),
+                    linear-gradient(
+                            135deg,
+                            #eef2ff,
+                            #faf5ff,
+                            #ecfeff
+                    );
+
+            color: #29264c;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =================================
+           FLOATING STICKERS
+        ================================= */
+
+        .sticker {
+
+            position: fixed;
+
+            z-index: 0;
+
+            pointer-events: none;
+
+            font-size: 70px;
+
+            opacity: .12;
+
+            animation:
+                    float 6s ease-in-out infinite;
+        }
+
+
+        .sticker-1 {
+
+            top: 10%;
+
+            left: 3%;
+        }
+
+
+        .sticker-2 {
+
+            top: 15%;
+
+            right: 4%;
+
+            animation-delay: 1s;
+        }
+
+
+        .sticker-3 {
+
+            bottom: 10%;
+
+            left: 8%;
+
+            animation-delay: 2s;
+        }
+
+
+        .sticker-4 {
+
+            bottom: 7%;
+
+            right: 7%;
+
+            animation-delay: 3s;
+        }
+
+
+        .sticker-5 {
+
+            top: 45%;
+
+            left: 1%;
+
+            animation-delay: 1.5s;
+        }
+
+
+        @keyframes float {
+
+            0%,100% {
+
+                transform:
+                        translateY(0)
+                        rotate(-4deg);
+            }
+
+            50% {
+
+                transform:
+                        translateY(-15px)
+                        rotate(4deg);
+            }
+        }
+
+
+        /* =================================
+           TOP NAVIGATION
+        ================================= */
+
+        .top-nav {
+
+            position: relative;
+
+            z-index: 5;
+
+            background:
+                    rgba(255,255,255,.82);
+
+            backdrop-filter:
+                    blur(18px);
+
+            border-bottom:
+                    1px solid
+                    rgba(255,255,255,.7);
+
+            box-shadow:
+                    0 5px 25px
+                    rgba(60,60,110,.07);
+        }
+
+
+        .nav-inner {
+
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding:
+                    15px 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            color: #4f46e5;
+
+            text-decoration: none;
+
+            font-size: 22px;
+
+            font-weight: 750;
+        }
+
+
+        .brand-icon {
+
+            width: 43px;
+
+            height: 43px;
+
+            border-radius: 13px;
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #6366f1,
+                            #8b5cf6
+                    );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 21px;
+
+            box-shadow:
+                    0 6px 18px
+                    rgba(99,102,241,.25);
+        }
+
+
+        .dashboard-btn {
+
+            text-decoration: none;
+
+            color: #6366f1;
+
+            border:
+                    1px solid
+                    #6366f1;
+
+            border-radius: 11px;
+
+            padding:
+                    8px 16px;
+
+            font-weight: 600;
+
+            transition: .25s;
+        }
+
+
+        .dashboard-btn:hover {
+
+            background: #6366f1;
+
+            color: white;
+        }
+
+
+        /* =================================
+           MAIN CONTAINER
+        ================================= */
+
+        .main {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding:
+                    45px 25px 70px;
+        }
+
+
+        /* =================================
+           HEADER
+        ================================= */
+
+        .page-heading {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .ai-badge {
+
+            display: inline-block;
+
+            padding:
+                    8px 17px;
+
+            border-radius: 30px;
+
+            background:
+                    #ede9fe;
+
+            color:
+                    #6d28d9;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+        }
+
+
+        .page-heading h1 {
+
+            font-size:
+                    clamp(38px, 5vw, 55px);
+
+            font-weight: 800;
+
+            margin-bottom: 10px;
+
+            color: #252044;
+        }
+
+
+        .gradient-text {
+
+            background:
+                    linear-gradient(
+                            90deg,
+                            #6366f1,
+                            #8b5cf6,
+                            #ec4899
+                    );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .page-heading p {
+
+            color: #77758b;
+
+            font-size: 17px;
+
+            max-width: 650px;
+
+            margin: auto;
+
+            line-height: 1.6;
+        }
+
+
+        /* =================================
+           SETUP CARD
+        ================================= */
+
+        .setup-card {
+
+            max-width: 800px;
+
+            margin: auto;
+
+            padding: 38px;
+
+            border-radius: 28px;
+
+            background:
+                    rgba(255,255,255,.82);
+
+            backdrop-filter:
+                    blur(20px);
+
+            border:
+                    1px solid
+                    rgba(255,255,255,.8);
+
+            box-shadow:
+                    0 20px 50px
+                    rgba(60,50,120,.11);
+        }
+
+
+        .setup-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .setup-icon {
+
+            width: 58px;
+
+            height: 58px;
+
+            border-radius: 17px;
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #6366f1,
+                            #8b5cf6
+                    );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            font-size: 25px;
+
+            box-shadow:
+                    0 8px 20px
+                    rgba(99,102,241,.25);
+        }
+
+
+        .setup-title h3 {
+
+            font-size: 21px;
+
+            font-weight: 750;
+
+            margin: 0;
+        }
+
+
+        .setup-title p {
+
+            color: #888;
+
+            font-size: 14px;
+
+            margin: 3px 0 0;
+        }
+
+
+        /* =================================
+           FORM
+        ================================= */
+
+        .field-label {
+
+            display: block;
+
+            font-weight: 650;
+
+            color: #44415f;
+
+            margin-bottom: 9px;
+        }
+
+
+        .select-wrapper {
+
+            position: relative;
+        }
+
+
+        .select-wrapper .field-icon {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform:
+                    translateY(-50%);
+
+            color: #6366f1;
+
+            z-index: 2;
+        }
+
+
+        .form-select {
+
+            min-height: 52px;
+
+            padding-left: 45px;
+
+            border-radius: 13px;
+
+            border:
+                    1px solid
+                    #e1dfec;
+
+            background:
+                    rgba(255,255,255,.9);
+
+            color: #3d3958;
+
+            font-weight: 500;
+        }
+
+
+        .form-select:focus {
+
+            border-color:
+                    #6366f1;
+
+            box-shadow:
+                    0 0 0 4px
+                    rgba(99,102,241,.1);
+        }
+
+
+        /* =================================
+           START BUTTON
+        ================================= */
+
+        .start-btn {
+
+            width: 100%;
+
+            border: none;
+
+            border-radius: 14px;
+
+            padding: 15px;
+
+            margin-top: 10px;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #6366f1,
+                            #8b5cf6,
+                            #ec4899
+                    );
+
+            box-shadow:
+                    0 12px 28px
+                    rgba(99,102,241,.28);
+
+            transition: .3s;
+        }
+
+
+        .start-btn:hover {
+
+            transform:
+                    translateY(-3px);
+
+            box-shadow:
+                    0 17px 35px
+                    rgba(99,102,241,.36);
+        }
+
+
+        /* =================================
+           QUESTION AREA
+        ================================= */
+
+        #questions {
+
+            max-width: 900px;
+
+            margin:
+                    35px auto 0;
+        }
+
+
+        .interview-header {
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #4338ca,
+                            #6366f1,
+                            #8b5cf6
+                    );
+
+            color: white;
+
+            border-radius: 25px;
+
+            padding:
+                    22px 25px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                    0 12px 30px
+                    rgba(79,70,229,.22);
+        }
+
+
+        .interview-tech {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .tech-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 14px;
+
+            background:
+                    rgba(255,255,255,.16);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 23px;
+        }
+
+
+        .interview-tech h5 {
+
+            margin: 0;
+
+            font-weight: 700;
+        }
+
+
+        .interview-tech small {
+
+            opacity: .78;
+        }
+
+
+        .question-counter {
+
+            padding:
+                    8px 14px;
+
+            border-radius: 30px;
+
+            background:
+                    rgba(255,255,255,.16);
+
+            font-weight: 650;
+
+            font-size: 14px;
+        }
+
+
+        /* =================================
+           QUESTION CARD
+        ================================= */
+
+        .question-card {
+
+            background:
+                    rgba(255,255,255,.9);
+
+            border:
+                    1px solid
+                    rgba(255,255,255,.9);
+
+            border-radius: 23px;
+
+            padding: 30px;
+
+            margin-top: 18px;
+
+            box-shadow:
+                    0 10px 30px
+                    rgba(60,60,110,.08);
+
+            transition: .3s;
+        }
+
+
+        .question-card:hover {
+
+            transform:
+                    translateY(-3px);
+
+            box-shadow:
+                    0 15px 35px
+                    rgba(60,60,110,.12);
+        }
+
+
+        .question-number {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                    7px 13px;
+
+            border-radius: 30px;
+
+            background:
+                    #ede9fe;
+
+            color:
+                    #6d28d9;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+        }
+
+
+        .question-card h5 {
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            line-height: 1.5;
+
+            color: #29264c;
+
+            margin-bottom: 20px;
+        }
+
+
+        .answer-label {
+
+            color: #77758b;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+
+            display: block;
+        }
+
+
+        .answer-box {
+
+            width: 100%;
+
+            min-height: 130px;
+
+            resize: vertical;
+
+            border:
+                    1px solid
+                    #e1dfec;
+
+            border-radius: 14px;
+
+            padding: 15px;
+
+            outline: none;
+
+            background:
+                    #fbfbff;
+
+            color: #3d3958;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            transition: .25s;
+        }
+
+
+        .answer-box:focus {
+
+            background: white;
+
+            border-color:
+                    #6366f1;
+
+            box-shadow:
+                    0 0 0 4px
+                    rgba(99,102,241,.09);
+        }
+
+
+        /* =================================
+           SUBMIT AREA
+        ================================= */
+
+        .submit-area {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            padding:
+                    25px;
+
+            border-radius: 22px;
+
+            background:
+                    rgba(255,255,255,.7);
+        }
+
+
+        .submit-btn {
+
+            border: none;
+
+            border-radius: 13px;
+
+            padding:
+                    13px 35px;
+
+            color: white;
+
+            font-weight: 700;
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #10b981,
+                            #14b8a6
+                    );
+
+            box-shadow:
+                    0 10px 25px
+                    rgba(16,185,129,.22);
+
+            transition: .3s;
+        }
+
+
+        .submit-btn:hover {
+
+            transform:
+                    translateY(-3px);
+
+            box-shadow:
+                    0 15px 30px
+                    rgba(16,185,129,.3);
+        }
+
+
+        /* =================================
+           RESULT MODAL
+        ================================= */
+
+        .result-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                    rgba(28,25,60,.55);
+
+            backdrop-filter:
+                    blur(8px);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 100;
+        }
+
+
+        .result-card {
+
+            width: 100%;
+
+            max-width: 500px;
+
+            background: white;
+
+            border-radius: 30px;
+
+            padding: 40px;
+
+            text-align: center;
+
+            box-shadow:
+                    0 30px 70px
+                    rgba(0,0,0,.2);
+
+            animation:
+                    resultIn .35s ease;
+        }
+
+
+        @keyframes resultIn {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                        scale(.85)
+                        translateY(20px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                        scale(1)
+                        translateY(0);
+            }
+        }
+
+
+        .result-icon {
+
+            font-size: 65px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .result-card h2 {
+
+            font-weight: 800;
+
+            color: #29264c;
+        }
+
+
+        .score-circle {
+
+            width: 150px;
+
+            height: 150px;
+
+            margin:
+                    25px auto;
+
+            border-radius: 50%;
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #6366f1,
+                            #8b5cf6,
+                            #ec4899
+                    );
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            box-shadow:
+                    0 15px 35px
+                    rgba(99,102,241,.3);
+        }
+
+
+        .score-number {
+
+            font-size: 42px;
+
+            font-weight: 800;
+
+            line-height: 1;
+        }
+
+
+        .score-label {
+
+            font-size: 13px;
+
+            opacity: .85;
+
+            margin-top: 5px;
+        }
+
+
+        .result-message {
+
+            color: #77758b;
+
+            margin-bottom: 25px;
+        }
+
+
+        .result-actions {
+
+            display: flex;
+
+            gap: 10px;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+        }
+
+
+        .result-btn {
+
+            border-radius: 11px;
+
+            padding:
+                    10px 17px;
+
+            text-decoration: none;
+
+            font-weight: 650;
+
+            border: none;
+        }
+
+
+        .history-btn {
+
+            background: #ede9fe;
+
+            color: #6d28d9;
+        }
+
+
+        .progress-btn {
+
+            background: #dbeafe;
+
+            color: #2563eb;
+        }
+
+
+        .again-btn {
+
+            background: #dcfce7;
+
+            color: #15803d;
+        }
+
+
+        /* =================================
+           LOADING
+        ================================= */
+
+        .loading {
+
+            text-align: center;
+
+            padding: 45px;
+
+            color: #77758b;
+        }
+
+
+        .loading-robot {
+
+            font-size: 55px;
+
+            animation:
+                    robotLoading 1s
+                    ease-in-out
+                    infinite alternate;
+        }
+
+
+        @keyframes robotLoading {
+
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-10px);
+            }
+        }
+
+
+        /* =================================
+           RESPONSIVE
+        ================================= */
+
+        @media(max-width: 700px) {
+
+            .nav-inner {
+
+                padding:
+                        12px 15px;
+            }
+
+
+            .main {
+
+                padding:
+                        30px 15px 50px;
+            }
+
+
+            .setup-card {
+
+                padding: 25px;
+            }
+
+
+            .interview-header {
+
+                align-items: flex-start;
+
+                gap: 15px;
+
+                flex-direction: column;
+            }
+
+
+            .question-card {
+
+                padding: 22px;
+            }
+
+
+            .sticker {
+
+                font-size: 50px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
-<body class="bg-light">
 
-<div class="container mt-5">
+<body>
 
-    <div class="card shadow">
 
-        <div class="card-body">
+<!-- =================================
+     BACKGROUND STICKERS
+================================== -->
 
-            <h2 class="text-center mb-4">
-                AI Interview
-            </h2>
+<div class="sticker sticker-1">
+    💻
+</div>
 
-            <div class="mb-3">
+<div class="sticker sticker-2">
+    📚
+</div>
 
-                <label>Technology</label>
+<div class="sticker sticker-3">
+    🎓
+</div>
 
-                <select id="technology" class="form-select">
+<div class="sticker sticker-4">
+    💡
+</div>
 
-                    <option>Java</option>
-                    <option>Python</option>
-                    <option>DevOps</option>
+<div class="sticker sticker-5">
+    🤖
+</div>
 
-                </select>
+
+<!-- =================================
+     NAVBAR
+================================== -->
+
+<nav class="top-nav">
+
+    <div class="nav-inner">
+
+
+        <a href="dashboard.html"
+           class="brand">
+
+            <div class="brand-icon">
+                🤖
+            </div>
+
+            CareerPilotAI
+
+        </a>
+
+
+        <a href="dashboard.html"
+           class="dashboard-btn">
+
+            <i class="fa-solid fa-arrow-left me-1"></i>
+
+            Dashboard
+
+        </a>
+
+
+    </div>
+
+</nav>
+
+
+<!-- =================================
+     MAIN
+================================== -->
+
+<main class="main">
+
+
+    <!-- PAGE HEADING -->
+
+    <div class="page-heading">
+
+        <span class="ai-badge">
+
+            ✨ AI-POWERED INTERVIEW PRACTICE
+
+        </span>
+
+
+        <h1>
+
+            Practice.
+            <span class="gradient-text">
+                Improve.
+            </span>
+            Succeed.
+
+        </h1>
+
+
+        <p>
+
+            Test your technical knowledge with
+            CareerPilotAI and prepare yourself
+            for real-world interviews.
+
+        </p>
+
+    </div>
+
+
+    <!-- =================================
+         INTERVIEW SETUP
+    ================================== -->
+
+    <div class="setup-card"
+         id="setupCard">
+
+
+        <div class="setup-title">
+
+            <div class="setup-icon">
+
+                <i class="fa-solid fa-bullseye"></i>
 
             </div>
 
-            <div class="mb-3">
 
-                <label>Difficulty</label>
+            <div>
 
-                <select id="difficulty" class="form-select">
+                <h3>
+                    Choose Your Interview
+                </h3>
 
-                    <option>Beginner</option>
-                    <option>Intermediate</option>
-                    <option>Advanced</option>
-
-                </select>
+                <p>
+                    Select your technology and difficulty level
+                </p>
 
             </div>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- TECHNOLOGY -->
+
+            <div class="col-md-6">
+
+                <label class="field-label">
+
+                    💻 Technology
+
+                </label>
+
+
+                <div class="select-wrapper">
+
+                    <i class="field-icon fa-solid fa-code"></i>
+
+                    <select
+                            id="technology"
+                            class="form-select">
+
+                        <option value="Java">
+                            Java
+                        </option>
+
+                        <option value="Python">
+                            Python
+                        </option>
+
+                        <option value="DevOps">
+                            DevOps
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIFFICULTY -->
+
+            <div class="col-md-6">
+
+                <label class="field-label">
+
+                    ⚡ Difficulty
+
+                </label>
+
+
+                <div class="select-wrapper">
+
+                    <i class="field-icon fa-solid fa-gauge-high"></i>
+
+                    <select
+                            id="difficulty"
+                            class="form-select">
+
+                        <option value="Beginner">
+                            Beginner
+                        </option>
+
+                        <option value="Intermediate">
+                            Intermediate
+                        </option>
+
+                        <option value="Advanced">
+                            Advanced
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- START -->
+
+            <div class="col-12">
+
+                <button
+                        id="startButton"
+                        class="start-btn"
+                        onclick="startInterview()">
+
+                    <i class="fa-solid fa-rocket me-2"></i>
+
+                    Start AI Interview
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTIONS -->
+
+    <div id="questions"></div>
+
+
+</main>
+
+
+<!-- =================================
+     RESULT MODAL
+================================== -->
+
+<div class="result-overlay"
+     id="resultOverlay">
+
+
+    <div class="result-card">
+
+
+        <div class="result-icon">
+
+            🎉
+
+        </div>
+
+
+        <h2>
+            Interview Completed!
+        </h2>
+
+
+        <p class="text-muted">
+
+            Great work! Here's your interview score.
+
+        </p>
+
+
+        <div class="score-circle">
+
+            <div class="score-number"
+                 id="scoreNumber">
+
+                0
+
+            </div>
+
+            <div class="score-label">
+
+                SCORE
+
+            </div>
+
+        </div>
+
+
+        <p class="result-message"
+           id="resultMessage">
+
+            Keep practicing and continue improving!
+
+        </p>
+
+
+        <div class="result-actions">
+
+
+            <a href="history.html"
+               class="result-btn history-btn">
+
+                📚 History
+
+            </a>
+
+
+            <a href="progress.html"
+               class="result-btn progress-btn">
+
+                📊 Progress
+
+            </a>
+
 
             <button
-                    class="btn btn-primary"
-                    onclick="startInterview()">
+                    class="result-btn again-btn"
+                    onclick="tryAgain()">
 
-                Start Interview
+                🔄 Try Again
 
             </button>
 
-            <hr>
-
-            <div id="questions"></div>
 
         </div>
 
@@ -67,110 +1501,501 @@
 
 </div>
 
+
 <script>
 
-    async function startInterview(){
 
-        const request={
+    /* =================================
+       START INTERVIEW
+    ================================== */
 
-            technology:document.getElementById("technology").value,
-            difficulty:document.getElementById("difficulty").value
+    async function startInterview() {
 
-        };
 
-        const response=await fetch("http://localhost:8081/api/interview/start",{
+        const technology =
+            document.getElementById("technology").value;
 
-            method:"POST",
 
-            headers:{
-                "Content-Type":"application/json"
-            },
+        const difficulty =
+            document.getElementById("difficulty").value;
 
-            body:JSON.stringify(request)
-
-        });
-
-        const questions=await response.json();
-
-        let html="";
-
-        questions.forEach((q,index)=>{
-
-            html+=`
-            <div class="card mt-3">
-                <div class="card-body">
-
-                    <h5>Question ${index+1}</h5>
-
-                    <p>${q}</p>
-
-                    <textarea
-                        class="form-control"
-                        rows="3"
-                        placeholder="Write your answer here"></textarea>
-
-                </div>
-            </div>
-        `;
-
-        });
-
-        html+=`
-        <button
-        class="btn btn-success mt-3"
-        onclick="submitInterview()">
-
-    Submit Interview
-
-</button>
-    `;
-
-        document.getElementById("questions").innerHTML=html;
-
-    }
-    async function submitInterview() {
-
-        const answers = [];
-
-        document.querySelectorAll("textarea").forEach(textarea => {
-
-            answers.push(textarea.value);
-
-        });
 
         const request = {
 
-            technology: document.getElementById("technology").value,
-            difficulty: document.getElementById("difficulty").value,
+            technology: technology,
+
+            difficulty: difficulty
+
+        };
+
+
+        const startButton =
+            document.getElementById("startButton");
+
+
+        startButton.disabled = true;
+
+        startButton.innerHTML =
+
+            '<i class="fa-solid fa-spinner fa-spin me-2"></i>' +
+            'Generating Questions...';
+
+
+        try {
+
+
+            const response = await fetch(
+
+                "http://localhost:8081/api/interview/start",
+
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify(request)
+
+                }
+
+            );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to start interview"
+                );
+
+            }
+
+
+            const questions =
+                await response.json();
+
+
+            displayQuestions(
+                questions,
+                technology,
+                difficulty
+            );
+
+
+        } catch(error) {
+
+
+            console.error(error);
+
+
+            alert(
+                "Unable to start the interview. " +
+                "Please make sure the server is running."
+            );
+
+
+            startButton.disabled = false;
+
+            startButton.innerHTML =
+
+                '<i class="fa-solid fa-rocket me-2"></i>' +
+                'Start AI Interview';
+
+        }
+
+    }
+
+
+    /* =================================
+       DISPLAY QUESTIONS
+    ================================== */
+
+    function displayQuestions(
+        questions,
+        technology,
+        difficulty
+    ) {
+
+
+        document.getElementById(
+            "setupCard"
+        ).style.display = "none";
+
+
+        let html = `
+
+        <div class="interview-header">
+
+            <div class="interview-tech">
+
+                <div class="tech-icon">
+
+                    ${
+            technology === "Java"
+                ? "☕"
+                : technology === "Python"
+                    ? "🐍"
+                    : "⚙️"
+        }
+
+                </div>
+
+                <div>
+
+                    <h5>
+                        ${technology} Interview
+                    </h5>
+
+                    <small>
+                        ${difficulty} Level
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="question-counter">
+
+                ${questions.length} Questions
+
+            </div>
+
+        </div>
+
+    `;
+
+
+        questions.forEach(
+            (question, index) => {
+
+
+                html += `
+
+                <div class="question-card">
+
+                    <div class="question-number">
+
+                        <i class="fa-solid fa-circle-question"></i>
+
+                        Question ${index + 1}
+
+                    </div>
+
+
+                    <h5>
+
+                        ${question}
+
+                    </h5>
+
+
+                    <label class="answer-label">
+
+                        YOUR ANSWER
+
+                    </label>
+
+
+                    <textarea
+                        class="answer-box"
+                        data-question="${index}"
+                        placeholder="Type your answer here..."
+                    ></textarea>
+
+                </div>
+
+            `;
+
+            }
+        );
+
+
+        html += `
+
+        <div class="submit-area">
+
+            <p class="text-muted mb-3">
+
+                🧠 Take your time and answer each question
+                as clearly as possible.
+
+            </p>
+
+
+            <button
+                class="submit-btn"
+                onclick="submitInterview()">
+
+                <i class="fa-solid fa-paper-plane me-2"></i>
+
+                Submit Interview
+
+            </button>
+
+        </div>
+
+    `;
+
+
+        document.getElementById(
+            "questions"
+        ).innerHTML = html;
+
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+
+
+    /* =================================
+       SUBMIT INTERVIEW
+    ================================== */
+
+    async function submitInterview() {
+
+
+        const answers = [];
+
+
+        document
+            .querySelectorAll(".answer-box")
+            .forEach(textarea => {
+
+                answers.push(
+                    textarea.value
+                );
+
+            });
+
+
+        const technology =
+            document.getElementById(
+                "technology"
+            ).value;
+
+
+        const difficulty =
+            document.getElementById(
+                "difficulty"
+            ).value;
+
+
+        const request = {
+
+            technology: technology,
+
+            difficulty: difficulty,
+
             answers: answers
 
         };
 
-        const response = await fetch(
-            "http://localhost:8081/api/interview/submit",
-            {
 
-                method: "POST",
+        const submitButton =
+            document.querySelector(
+                ".submit-btn"
+            );
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
 
-                body: JSON.stringify(request)
+        if (submitButton) {
 
-            });
-        console.log(response.status);
-        console.log(response.url);
+            submitButton.disabled = true;
 
-        const score = await response.text();
+            submitButton.innerHTML =
 
-        alert("Interview Submitted Successfully!\n\nScore : " + score);
+                '<i class="fa-solid fa-spinner fa-spin me-2"></i>' +
+                'Evaluating Answers...';
 
-        window.location.href = "dashboard.html";
+        }
+
+
+        try {
+
+
+            const response = await fetch(
+
+                "http://localhost:8081/api/interview/submit",
+
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify(request)
+
+                }
+
+            );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to submit interview"
+                );
+
+            }
+
+
+            const scoreText =
+                await response.text();
+
+
+            const score =
+                parseInt(scoreText);
+
+
+            showResult(score);
+
+
+        } catch(error) {
+
+
+            console.error(error);
+
+
+            alert(
+                "Unable to submit interview. " +
+                "Please try again."
+            );
+
+
+            if (submitButton) {
+
+                submitButton.disabled = false;
+
+                submitButton.innerHTML =
+
+                    '<i class="fa-solid fa-paper-plane me-2"></i>' +
+                    'Submit Interview';
+
+            }
+
+        }
+
+    }
+
+
+    /* =================================
+       SHOW RESULT
+    ================================== */
+
+    function showResult(score) {
+
+
+        document.getElementById(
+            "scoreNumber"
+        ).innerText = score;
+
+
+        const message =
+            document.getElementById(
+                "resultMessage"
+            );
+
+
+        if (score >= 8) {
+
+            message.innerText =
+                "Excellent performance! 🏆 Keep up the great work.";
+
+        } else if (score >= 5) {
+
+            message.innerText =
+                "Good effort! 💪 A little more practice will make you stronger.";
+
+        } else {
+
+            message.innerText =
+                "Keep practicing! 🚀 Every interview is a chance to improve.";
+
+        }
+
+
+        document.getElementById(
+            "resultOverlay"
+        ).style.display = "flex";
+
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+
+    /* =================================
+       TRY AGAIN
+    ================================== */
+
+    function tryAgain() {
+
+
+        document.getElementById(
+            "resultOverlay"
+        ).style.display = "none";
+
+
+        document.body.style.overflow =
+            "";
+
+
+        document.getElementById(
+            "questions"
+        ).innerHTML = "";
+
+
+        document.getElementById(
+            "setupCard"
+        ).style.display = "block";
+
+
+        const startButton =
+            document.getElementById(
+                "startButton"
+            );
+
+
+        startButton.disabled = false;
+
+
+        startButton.innerHTML =
+
+            '<i class="fa-solid fa-rocket me-2"></i>' +
+            'Start AI Interview';
+
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
 
     }
 
 </script>
 
+
 </body>
+
 </html>

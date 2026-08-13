@@ -7,50 +7,478 @@
 
     <title>CareerPilotAI Dashboard</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <style>
 
-        body{
-            background:#f4f7fb;
+        * {
+            box-sizing: border-box;
         }
 
-        .sidebar{
-            background:#1e293b;
-            height:100vh;
-            color:white;
-            padding:20px;
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #eef4ff, #f8f3ff, #f1fbff);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .sidebar a{
-            color:white;
-            text-decoration:none;
-            display:block;
-            padding:12px;
-            border-radius:8px;
-            margin-bottom:8px;
+        /* =========================
+           BACKGROUND STICKERS
+        ========================== */
+
+        .sticker {
+            position: fixed;
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.14;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .sidebar a:hover{
-            background:#334155;
+        .sticker-1 {
+            top: 8%;
+            right: 5%;
+            font-size: 90px;
         }
 
-        .card{
-            border:none;
-            border-radius:15px;
+        .sticker-2 {
+            bottom: 8%;
+            right: 8%;
+            font-size: 85px;
+            animation-delay: 1s;
         }
 
-        .card:hover{
-            transform:translateY(-5px);
-            transition:.3s;
+        .sticker-3 {
+            top: 45%;
+            right: 25%;
+            font-size: 70px;
+            animation-delay: 2s;
         }
 
-        .topbar{
-            background:white;
-            padding:15px;
-            box-shadow:0 2px 10px rgba(0,0,0,.08);
+        .sticker-4 {
+            bottom: 15%;
+            left: 22%;
+            font-size: 75px;
+            animation-delay: 3s;
+        }
+
+        .sticker-5 {
+            top: 18%;
+            left: 25%;
+            font-size: 65px;
+            animation-delay: 1.5s;
+        }
+
+        .sticker-6 {
+            bottom: 5%;
+            right: 40%;
+            font-size: 60px;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes float {
+
+            0%, 100% {
+                transform: translateY(0) rotate(-3deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(3deg);
+            }
+
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================== */
+
+        .sidebar {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #312e81, #4f46e5, #7c3aed);
+            color: white;
+            padding: 25px 18px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 5px 0 25px rgba(50, 40, 120, 0.2);
+        }
+
+        .brand {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .brand-icon {
+            width: 60px;
+            height: 60px;
+            margin: auto;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .brand h3 {
+            margin-top: 12px;
+            font-weight: 700;
+        }
+
+        .brand small {
+            opacity: 0.75;
+        }
+
+        .sidebar a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 15px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .sidebar a i {
+            width: 22px;
+            text-align: center;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255,255,255,0.17);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .sidebar a.active {
+            background: white;
+            color: #4f46e5;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+        }
+
+        .logout {
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 20px;
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================== */
+
+        .main-content {
+            position: relative;
+            z-index: 2;
+            padding: 25px 35px;
+        }
+
+        /* =========================
+           TOP BAR
+        ========================== */
+
+        .topbar {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 22px 25px;
+            box-shadow: 0 8px 30px rgba(80,80,130,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+
+        .welcome h3 {
+            font-weight: 700;
+            color: #25234a;
+            margin-bottom: 5px;
+        }
+
+        .welcome p {
+            margin: 0;
+            color: #777792;
+        }
+
+        .profile-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        /* =========================
+           HERO SECTION
+        ========================== */
+
+        .hero {
+            background: linear-gradient(120deg, #6366f1, #8b5cf6, #ec4899);
+            border-radius: 25px;
+            padding: 35px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(99,102,241,0.25);
+        }
+
+        .hero h2 {
+            font-weight: 700;
+            font-size: 30px;
+        }
+
+        .hero p {
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        .hero-button {
+            background: white;
+            color: #5b21b6;
+            border: none;
+            padding: 11px 22px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .hero-button:hover {
+            background: #f3f4f6;
+            color: #4c1d95;
+        }
+
+        .hero-emoji {
+            position: absolute;
+            right: 45px;
+            bottom: -10px;
+            font-size: 125px;
+            opacity: 0.25;
+        }
+
+        /* =========================
+           QUICK STATISTICS
+        ========================== */
+
+        .stat-card {
+            border: none;
+            border-radius: 18px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 7px 25px rgba(50,50,100,0.07);
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .purple {
+            background: #ede9fe;
+            color: #7c3aed;
+        }
+
+        .pink {
+            background: #fce7f3;
+            color: #db2777;
+        }
+
+        .blue {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .green {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .stat-card h6 {
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .stat-card h3 {
+            color: #27234d;
+            font-weight: 700;
+        }
+
+        /* =========================
+           FEATURE CARDS
+        ========================== */
+
+        .section-title {
+            font-weight: 700;
+            color: #29264c;
+            margin: 30px 0 18px;
+        }
+
+        .feature-card {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            padding: 25px;
+            height: 100%;
+            box-shadow: 0 8px 25px rgba(60,60,110,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(60,60,110,0.15);
+        }
+
+        .feature-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 29px;
+            margin-bottom: 18px;
+        }
+
+        .feature-card h5 {
+            font-weight: 700;
+            color: #29264c;
+        }
+
+        .feature-card p {
+            color: #777792;
+            font-size: 14px;
+            min-height: 42px;
+        }
+
+        .feature-btn {
+            border: none;
+            border-radius: 10px;
+            padding: 9px 18px;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .btn-interview {
+            background: linear-gradient(135deg,#6366f1,#8b5cf6);
+        }
+
+        .btn-resume {
+            background: linear-gradient(135deg,#10b981,#14b8a6);
+        }
+
+        .btn-progress {
+            background: linear-gradient(135deg,#f59e0b,#f97316);
+        }
+
+        .btn-history {
+            background: linear-gradient(135deg,#06b6d4,#3b82f6);
+        }
+
+        /* =========================
+           LEARNING RESOURCES
+        ========================== */
+
+        .resources {
+            background: rgba(255,255,255,0.8);
+            border-radius: 22px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(60,60,110,0.06);
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 15px;
+            background: #f8f9ff;
+            transition: 0.25s;
+        }
+
+        .resource-item:hover {
+            background: #eef2ff;
+            transform: translateY(-2px);
+        }
+
+        .resource-icon {
+            font-size: 28px;
+        }
+
+        .resource-item h6 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .resource-item small {
+            color: #777;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media(max-width: 768px) {
+
+            .sidebar {
+                min-height: auto;
+            }
+
+            .main-content {
+                padding: 15px;
+            }
+
+            .topbar {
+                padding: 18px;
+            }
+
+            .hero {
+                padding: 25px;
+            }
+
+            .hero-emoji {
+                display: none;
+            }
+
         }
 
     </style>
@@ -59,125 +487,212 @@
 
 <body>
 
+<!-- Decorative Educational Stickers -->
+
+<div class="sticker sticker-1">💻</div>
+<div class="sticker sticker-2">📚</div>
+<div class="sticker sticker-3">🎓</div>
+<div class="sticker sticker-4">📝</div>
+<div class="sticker sticker-5">🤖</div>
+<div class="sticker sticker-6">💡</div>
+
+
 <div class="container-fluid">
 
     <div class="row">
 
-        <div class="col-md-2 sidebar">
+        <!-- ================= SIDEBAR ================= -->
 
-            <h3 class="text-center mb-4">
-                CareerPilotAI
-            </h3>
+        <div class="col-lg-2 col-md-3 sidebar">
 
-            <a href="#"><i class="fa fa-home"></i> Dashboard</a>
+            <div class="brand">
 
-            <a href="#"><i class="fa fa-robot"></i> AI Interview</a>
+                <div class="brand-icon">
+                    🤖
+                </div>
 
-            <a href="#"><i class="fa fa-file"></i> Resume</a>
+                <h3>CareerPilotAI</h3>
 
-            <a href="#"><i class="fa fa-chart-line"></i> Progress</a>
-
-            <a href="#"><i class="fa fa-history"></i> History</a>
-
-            <a href="#"><i class="fa fa-user"></i> Profile</a>
-
-            <a href="login.html"><i class="fa fa-right-from-bracket"></i> Logout</a>
-
-        </div>
-
-        <div class="col-md-10">
-
-            <div class="topbar">
-
-                <h4>Welcome to CareerPilotAI 👋</h4>
-
-                <p>Your AI Powered Interview Preparation Platform</p>
+                <small>Learn • Practice • Grow</small>
 
             </div>
 
-            <div class="container mt-4">
 
-                <div class="row">
+            <a href="interview.html">AI Interview</a>
 
-                    <div class="col-md-3 mb-4">
+            <a href="resume.html">Resume</a>
 
-                        <div class="card shadow">
+            <a href="progress.html">Progress</a>
 
-                            <div class="card-body text-center">
+            <a href="history.html">History</a>
 
-                                <h1>🤖</h1>
+            <a href="#">
 
-                                <h5>AI Interview</h5>
+                <i class="fa fa-user"></i>
 
-                                <a href="/interview.html" class="btn btn-primary">
-                                    Start AI Interview
-                                </a>
+                Profile
 
-                            </div>
+            </a>
+
+
+            <div class="logout">
+
+                <a href="login.html">
+
+                    <i class="fa fa-right-from-bracket"></i>
+
+                    Logout
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <div class="col-lg-10 col-md-9 main-content">
+
+
+            <!-- TOP BAR -->
+
+            <div class="topbar">
+
+                <div class="welcome">
+
+                    <h3>
+                        Welcome back! 👋
+                    </h3>
+
+                    <p>
+                        Let's prepare you for your dream career.
+                    </p>
+
+                </div>
+
+                <div class="profile-icon">
+
+                    <i class="fa fa-user"></i>
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO -->
+
+            <div class="hero">
+
+                <div>
+
+                    <h2>
+                        Ready for your next interview? 🚀
+                    </h2>
+
+                    <p>
+                        Practice technical interviews, improve your
+                        skills, analyze your progress and get ready
+                        to achieve your career goals.
+                    </p>
+
+                    <a href="interview.html"
+                       class="hero-button">
+
+                        <i class="fa fa-play me-2"></i>
+
+                        Start Practicing
+
+                    </a>
+
+                </div>
+
+                <div class="hero-emoji">
+                    🎓
+                </div>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <h4 class="section-title">
+                Your Learning Overview
+            </h4>
+
+            <div class="row">
+
+
+                <div class="col-lg-3 col-md-6 mb-3">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+
+                            <i class="fa fa-robot"></i>
 
                         </div>
+
+                        <h6>AI Interviews</h6>
+
+                        <h3>Practice</h3>
 
                     </div>
 
-                    <div class="col-md-3 mb-4">
+                </div>
 
-                        <div class="card shadow">
 
-                            <div class="card-body text-center">
+                <div class="col-lg-3 col-md-6 mb-3">
 
-                                <h1>📄</h1>
+                    <div class="stat-card">
 
-                                <h5>Resume</h5>
+                        <div class="stat-icon pink">
 
-                                <a href="/resume.html" class="btn btn-success">
-                                    Upload
-                                </a>
-
-                            </div>
+                            <i class="fa fa-file-lines"></i>
 
                         </div>
+
+                        <h6>Resume</h6>
+
+                        <h3>Build</h3>
 
                     </div>
 
-                    <div class="col-md-3 mb-4">
+                </div>
 
-                        <div class="card shadow">
 
-                            <div class="card-body text-center">
+                <div class="col-lg-3 col-md-6 mb-3">
 
-                                <h1>📊</h1>
+                    <div class="stat-card">
 
-                                <h5>Progress</h5>
+                        <div class="stat-icon blue">
 
-                                <a href="progress.html"
-                                   class="btn btn-warning">
-
-                                    View
-
-                                </a>
-                            </div>star
+                            <i class="fa fa-chart-line"></i>
 
                         </div>
+
+                        <h6>Progress</h6>
+
+                        <h3>Improve</h3>
 
                     </div>
 
-                    <div class="col-md-3 mb-4">
+                </div>
 
-                        <div class="card shadow">
 
-                            <div class="card-body text-center">
+                <div class="col-lg-3 col-md-6 mb-3">
 
-                                <h1>📚</h1>
+                    <div class="stat-card">
 
-                                <h5>History</h5>
+                        <div class="stat-icon green">
 
-                                <a href="/history.html" class="btn btn-info">
-                                    Open
-                                </a>
-
-                            </div>
+                            <i class="fa fa-graduation-cap"></i>
 
                         </div>
+
+                        <h6>Career Goal</h6>
+
+                        <h3>Achieve</h3>
 
                     </div>
 
@@ -185,11 +700,261 @@
 
             </div>
 
+
+            <!-- FEATURES -->
+
+            <h4 class="section-title">
+
+                Career Preparation Tools
+
+            </h4>
+
+
+            <div class="row">
+
+
+                <!-- INTERVIEW -->
+
+                <div class="col-lg-3 col-md-6 mb-4">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon purple">
+
+                            🤖
+
+                        </div>
+
+                        <h5>AI Interview</h5>
+
+                        <p>
+                            Practice technical questions based on
+                            your selected technology and difficulty.
+                        </p>
+
+                        <a href="interview.html"
+                           class="feature-btn btn-interview">
+
+                            Start Interview
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RESUME -->
+
+                <div class="col-lg-3 col-md-6 mb-4">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon green">
+
+                            📄
+
+                        </div>
+
+                        <h5>Resume</h5>
+
+                        <p>
+                            Upload and manage your resume for future
+                            AI-powered analysis.
+                        </p>
+
+                        <a href="resume.html"
+                           class="feature-btn btn-resume">
+
+                            Upload Resume
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROGRESS -->
+
+                <div class="col-lg-3 col-md-6 mb-4">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon"
+
+                             style="background:#fff7ed;color:#f97316;">
+
+                            📊
+
+                        </div>
+
+                        <h5>Progress</h5>
+
+                        <p>
+                            Track your interview performance and
+                            monitor your improvement.
+                        </p>
+
+                        <a href="progress.html"
+                           class="feature-btn btn-progress">
+
+                            View Progress
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HISTORY -->
+
+                <div class="col-lg-3 col-md-6 mb-4">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon blue">
+
+                            📚
+
+                        </div>
+
+                        <h5>History</h5>
+
+                        <p>
+                            Review your previous interviews,
+                            scores and performance.
+                        </p>
+
+                        <a href="history.html"
+                           class="feature-btn btn-history">
+
+                            View History
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LEARNING RESOURCES -->
+
+            <div class="resources">
+
+                <h4 class="section-title mt-0">
+
+                    📚 Learning Resources
+
+                </h4>
+
+                <div class="row g-3">
+
+
+                    <div class="col-md-4">
+
+                        <div class="resource-item">
+
+                            <div class="resource-icon">
+                                💻
+                            </div>
+
+                            <div>
+
+                                <h6>
+                                    Technical Skills
+                                </h6>
+
+                                <small>
+                                    Practice programming concepts
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="resource-item">
+
+                            <div class="resource-icon">
+                                📝
+                            </div>
+
+                            <div>
+
+                                <h6>
+                                    Interview Preparation
+                                </h6>
+
+                                <small>
+                                    Improve your interview answers
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="resource-item">
+
+                            <div class="resource-icon">
+                                🎓
+                            </div>
+
+                            <div>
+
+                                <h6>
+                                    Career Development
+                                </h6>
+
+                                <small>
+                                    Prepare for your dream career
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="footer">
+
+                <div>
+                    🤖 CareerPilotAI
+                </div>
+
+                <div>
+                    Your AI-powered career preparation partner
+                </div>
+
+            </div>
+
+
         </div>
 
     </div>
 
 </div>
+
 
 </body>
 </html>

@@ -1,57 +1,581 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CareerPilotAI</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CareerPilotAI | AI-Powered Career Preparation</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <style>
 
-        body{
-            background:#f8f9fa;
+        * {
+            box-sizing: border-box;
         }
 
-        .hero{
-            height:90vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #faf5ff,
+                    #ecfeff
+            );
+            color: #29264c;
+            overflow-x: hidden;
         }
 
-        .hero h1{
-            font-size:60px;
-            font-weight:bold;
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        .navbar {
+            background: rgba(255,255,255,0.82);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 5px 25px rgba(60,60,110,0.08);
+            padding: 15px 0;
         }
 
-        .hero p{
-            font-size:22px;
-            color:gray;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 23px;
+            font-weight: 750;
+            color: #4f46e5;
+            text-decoration: none;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            background: linear-gradient(
+                    135deg,
+                    #6366f1,
+                    #8b5cf6
+            );
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 21px;
+            box-shadow: 0 5px 15px rgba(99,102,241,0.3);
+        }
+
+        .nav-link {
+            color: #55536d !important;
+            font-weight: 500;
+            margin-right: 15px;
+        }
+
+        .nav-link:hover {
+            color: #6366f1 !important;
+        }
+
+        .login-btn {
+            border: 1px solid #6366f1;
+            color: #6366f1;
+            border-radius: 10px;
+            padding: 8px 20px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-btn:hover {
+            background: #6366f1;
+            color: white;
+        }
+
+        .register-btn {
+            background: linear-gradient(
+                    135deg,
+                    #6366f1,
+                    #8b5cf6
+            );
+            color: white;
+            border-radius: 10px;
+            padding: 9px 20px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(99,102,241,0.25);
+        }
+
+        .register-btn:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+        }
+
+        .badge-ai {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 30px;
+            background: #ede9fe;
+            color: #6d28d9;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 72px);
+            font-weight: 800;
+            line-height: 1.05;
+            color: #242044;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                    90deg,
+                    #6366f1,
+                    #8b5cf6,
+                    #ec4899
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #6b6a80;
+            max-width: 650px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+        }
+
+        .start-btn {
+            display: inline-block;
+            background: linear-gradient(
+                    135deg,
+                    #6366f1,
+                    #8b5cf6,
+                    #ec4899
+            );
+            color: white;
+            padding: 14px 28px;
+            border-radius: 13px;
+            text-decoration: none;
+            font-weight: 650;
+            box-shadow: 0 10px 25px rgba(99,102,241,0.3);
+            transition: .3s;
+        }
+
+        .start-btn:hover {
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(99,102,241,0.4);
+        }
+
+        .learn-btn {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 13px 25px;
+            border-radius: 13px;
+            border: 1px solid #ddd;
+            background: white;
+            color: #55536d;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .learn-btn:hover {
+            color: #6366f1;
+            border-color: #6366f1;
+        }
+
+
+        /* =========================
+           HERO ILLUSTRATION
+        ========================== */
+
+        .hero-visual {
+            position: relative;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-circle {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: linear-gradient(
+                    135deg,
+                    #ddd6fe,
+                    #e0e7ff,
+                    #cffafe
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 150px;
+            box-shadow: 0 20px 50px rgba(99,102,241,0.15);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+        }
+
+
+        /* =========================
+           FLOATING STICKERS
+        ========================== */
+
+        .float-sticker {
+            position: absolute;
+            background: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 31px;
+            box-shadow: 0 10px 30px rgba(50,50,100,0.12);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .sticker-computer {
+            top: 20px;
+            right: 20px;
+        }
+
+        .sticker-book {
+            top: 120px;
+            left: 20px;
+            animation-delay: 1s;
+        }
+
+        .sticker-graduation {
+            bottom: 45px;
+            right: 35px;
+            animation-delay: 2s;
+        }
+
+        .sticker-code {
+            bottom: 70px;
+            left: 40px;
+            animation-delay: 1.5s;
+        }
+
+        .sticker-ai {
+            top: 35px;
+            left: 45%;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes float {
+
+            0%,100% {
+                transform: translateY(0) rotate(-3deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(3deg);
+            }
+
+        }
+
+
+        /* =========================
+           FEATURES
+        ========================== */
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-weight: 750;
+            font-size: 36px;
+            color: #29264c;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #77758b;
+            max-width: 650px;
+            margin: 10px auto 45px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.85);
+            border: none;
+            border-radius: 22px;
+            padding: 30px;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(60,60,110,0.07);
+            transition: .3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(60,60,110,0.13);
+        }
+
+        .feature-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .icon-purple {
+            background: #ede9fe;
+        }
+
+        .icon-green {
+            background: #dcfce7;
+        }
+
+        .icon-blue {
+            background: #dbeafe;
+        }
+
+        .icon-pink {
+            background: #fce7f3;
+        }
+
+        .feature-card h5 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #77758b;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           HOW IT WORKS
+        ========================== */
+
+        .steps {
+            background: white;
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-number {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(
+                    135deg,
+                    #6366f1,
+                    #8b5cf6
+            );
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .step h5 {
+            font-weight: 700;
+        }
+
+        .step p {
+            color: #77758b;
+        }
+
+
+        /* =========================
+           CTA
+        ========================== */
+
+        .cta {
+            margin: 50px auto 80px;
+            border-radius: 30px;
+            padding: 60px 30px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(
+                    120deg,
+                    #4f46e5,
+                    #7c3aed,
+                    #db2777
+            );
+            box-shadow: 0 20px 45px rgba(79,70,229,0.25);
+        }
+
+        .cta h2 {
+            font-size: 38px;
+            font-weight: 750;
+        }
+
+        .cta p {
+            opacity: .9;
+            margin: 15px auto 25px;
+            max-width: 600px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #5b21b6;
+            padding: 13px 27px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .cta-btn:hover {
+            color: #4c1d95;
+            background: #f5f3ff;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #242044;
+            color: rgba(255,255,255,.7);
+        }
+
+        footer strong {
+            color: white;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media(max-width: 991px) {
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero-visual {
+                margin-top: 40px;
+            }
+
+        }
+
+        @media(max-width: 576px) {
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .main-circle {
+                width: 240px;
+                height: 240px;
+                font-size: 110px;
+            }
+
+            .hero-buttons a {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .learn-btn {
+                margin-left: 0;
+            }
+
         }
 
     </style>
 
 </head>
 
+
 <body>
 
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+
+<!-- =========================
+     NAVBAR
+========================== -->
+
+<nav class="navbar navbar-expand-lg">
 
     <div class="container">
 
-        <a class="navbar-brand fw-bold" href="#">
+        <a href="index.html" class="brand">
+
+            <div class="brand-icon">
+                🤖
+            </div>
+
             CareerPilotAI
+
         </a>
 
-        <div>
 
-            <a href="login.html" class="btn btn-outline-light me-2">
+        <div class="d-flex align-items-center gap-2">
+
+            <a href="login.html"
+               class="login-btn">
+
                 Login
+
             </a>
 
-            <a href="register.html" class="btn btn-warning">
-                Register
+            <a href="register.html"
+               class="register-btn">
+
+                Get Started
+
             </a>
 
         </div>
@@ -61,31 +585,399 @@
 </nav>
 
 
+
+<!-- =========================
+     HERO SECTION
+========================== -->
+
 <section class="hero">
 
-    <div class="text-center">
+    <div class="container">
 
-        <h1>
-            Ace Your Interviews with AI
-        </h1>
+        <div class="row align-items-center">
 
-        <p class="mt-3">
 
-            Generate interview questions,
-            receive AI feedback,
-            and get placement ready.
+            <!-- LEFT -->
 
-        </p>
+            <div class="col-lg-6 hero-content">
 
-        <a href="register.html" class="btn btn-primary btn-lg mt-4">
+                <span class="badge-ai">
 
-            Get Started
+                    ✨ AI-Powered Career Preparation
 
-        </a>
+                </span>
+
+
+                <h1>
+
+                    Prepare Smarter.
+                    <br>
+
+                    <span class="gradient-text">
+                        Interview Better.
+                    </span>
+
+                </h1>
+
+
+                <p class="mt-4">
+
+                    Practice technical interviews, improve your
+                    answers, track your performance and prepare
+                    yourself for your dream career with CareerPilotAI.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a href="register.html"
+                       class="start-btn">
+
+                        🚀 Start Your Journey
+
+                    </a>
+
+
+                    <a href="#features"
+                       class="learn-btn">
+
+                        Explore Features
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <div class="col-lg-6">
+
+                <div class="hero-visual">
+
+
+                    <div class="main-circle">
+
+                        🤖
+
+                    </div>
+
+
+                    <div class="float-sticker sticker-computer">
+                        💻
+                    </div>
+
+                    <div class="float-sticker sticker-book">
+                        📚
+                    </div>
+
+                    <div class="float-sticker sticker-graduation">
+                        🎓
+                    </div>
+
+                    <div class="float-sticker sticker-code">
+                        👨‍💻
+                    </div>
+
+                    <div class="float-sticker sticker-ai">
+                        💡
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
 </section>
 
+
+
+<!-- =========================
+     FEATURES
+========================== -->
+
+<section class="section" id="features">
+
+    <div class="container">
+
+        <h2 class="section-title">
+
+            Everything You Need to Prepare
+
+        </h2>
+
+        <p class="section-subtitle">
+
+            CareerPilotAI brings interview practice, resume
+            preparation and performance tracking into one platform.
+
+        </p>
+
+
+        <div class="row g-4">
+
+
+            <!-- INTERVIEW -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon icon-purple">
+                        🤖
+                    </div>
+
+                    <h5>
+                        AI Interviews
+                    </h5>
+
+                    <p>
+                        Practice technical questions based on
+                        your preferred technology and difficulty.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESUME -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon icon-green">
+                        📄
+                    </div>
+
+                    <h5>
+                        Resume Preparation
+                    </h5>
+
+                    <p>
+                        Upload and manage your resume and prepare
+                        it for future AI-powered analysis.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon icon-blue">
+                        📊
+                    </div>
+
+                    <h5>
+                        Track Progress
+                    </h5>
+
+                    <p>
+                        Monitor your interview scores and identify
+                        areas where you can improve.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- HISTORY -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon icon-pink">
+                        📚
+                    </div>
+
+                    <h5>
+                        Interview History
+                    </h5>
+
+                    <p>
+                        Review previous interviews, scores and
+                        performance whenever you need.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     HOW IT WORKS
+========================== -->
+
+<section class="section steps">
+
+    <div class="container">
+
+        <h2 class="section-title">
+
+            How CareerPilotAI Works
+
+        </h2>
+
+        <p class="section-subtitle">
+
+            Start preparing for your interviews in just a few simple steps.
+
+        </p>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-4">
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <h5>
+                        Create Your Account
+                    </h5>
+
+                    <p>
+                        Register and create your personalized
+                        CareerPilotAI profile.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <h5>
+                        Practice Interviews
+                    </h5>
+
+                    <p>
+                        Select your technology and difficulty,
+                        then start practicing.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <h5>
+                        Track & Improve
+                    </h5>
+
+                    <p>
+                        Check your scores, review your history
+                        and continuously improve.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CTA
+========================== -->
+
+<div class="container">
+
+    <div class="cta">
+
+        <h2>
+            Ready to Ace Your Next Interview? 🚀
+        </h2>
+
+        <p>
+
+            Start practicing today and take one step closer
+            to your dream career.
+
+        </p>
+
+        <a href="register.html"
+           class="cta-btn">
+
+            Create Free Account
+
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <strong>
+        🤖 CareerPilotAI
+    </strong>
+
+    <br>
+
+    AI-powered interview preparation platform
+
+    <br><br>
+
+    © 2026 CareerPilotAI. All rights reserved.
+
+</footer>
+
+
 </body>
+
 </html>

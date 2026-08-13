@@ -1,155 +1,4474 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Register</title>
+    <title>Create Account | CareerPilotAI</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", sans-serif;
+
+            background:
+                    radial-gradient(
+                            circle at 10% 80%,
+                            #ddd6fe 0%,
+                            transparent 30%
+                    ),
+                    radial-gradient(
+                            circle at 90% 15%,
+                            #fbcfe8 0%,
+                            transparent 30%
+                    ),
+                    linear-gradient(
+                            135deg,
+                            #eef2ff,
+                            #faf5ff,
+                            #ecfeff
+                    );
+
+            overflow-x: hidden;
+        }
+
+        /* =================================
+           MAIN WRAPPER
+        ================================= */
+
+        .register-wrapper {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 35px;
+        }
+
+
+        .register-container {
+
+            width: 100%;
+
+            max-width: 1150px;
+
+            min-height: 700px;
+
+            display: grid;
+
+            grid-template-columns:
+                .95fr
+                1.05fr;
+
+            background:
+                    rgba(255,255,255,.55);
+
+            backdrop-filter: blur(25px);
+
+            border:
+                    1px solid
+                    rgba(255,255,255,.7);
+
+            border-radius: 35px;
+
+            overflow: hidden;
+
+            box-shadow:
+                    0 30px 80px
+                    rgba(60,50,120,.16);
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* =================================
+           LEFT PANEL
+        ================================= */
+
+        .register-visual {
+
+            position: relative;
+
+            padding: 55px;
+
+            background:
+                    linear-gradient(
+                            145deg,
+                            #4338ca,
+                            #6366f1 40%,
+                            #8b5cf6 70%,
+                            #ec4899
+                    );
+
+            color: white;
+
+            overflow: hidden;
+        }
+
+
+        .register-visual::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 370px;
+
+            height: 370px;
+
+            border-radius: 50%;
+
+            background:
+                    rgba(255,255,255,.08);
+
+            top: -150px;
+
+            left: -120px;
+        }
+
+
+        .register-visual::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 480px;
+
+            height: 480px;
+
+            border-radius: 50%;
+
+            background:
+                    rgba(255,255,255,.06);
+
+            bottom: -280px;
+
+            right: -180px;
+        }
+
+
+        .visual-content {
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+
+        /* =================================
+           LOGO
+        ================================= */
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            font-size: 25px;
+
+            font-weight: 750;
+        }
+
+
+        .logo-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            border-radius: 16px;
+
+            background:
+                    rgba(255,255,255,.18);
+
+            backdrop-filter: blur(10px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 26px;
+
+            box-shadow:
+                    0 8px 25px
+                    rgba(0,0,0,.12);
+        }
+
+
+        /* =================================
+           VISUAL CONTENT
+        ================================= */
+
+        .register-visual h1 {
+
+            font-size: 45px;
+
+            line-height: 1.1;
+
+            font-weight: 800;
+
+            margin-top: 75px;
+
+            max-width: 500px;
+        }
+
+
+        .register-visual h1 span {
+
+            color: #fde68a;
+        }
+
+
+        .visual-description {
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            color:
+                    rgba(255,255,255,.86);
+
+            max-width: 500px;
+
+            margin-top: 20px;
+        }
+
+
+        /* =================================
+           BENEFITS
+        ================================= */
+
+        .benefits {
+
+            margin-top: 30px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+        }
+
+
+        .benefit {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 11px 15px;
+
+            width: fit-content;
+
+            border-radius: 14px;
+
+            background:
+                    rgba(255,255,255,.12);
+
+            border:
+                    1px solid
+                    rgba(255,255,255,.14);
+
+            backdrop-filter: blur(10px);
+
+            font-size: 14px;
+        }
+
+
+        .benefit-icon {
+
+            width: 32px;
+
+            height: 32px;
+
+            border-radius: 10px;
+
+            background:
+                    rgba(255,255,255,.18);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        /* =================================
+           FLOATING STUDENT
+        ================================= */
+
+        .student-illustration {
+
+            position: absolute;
+
+            right: 50px;
+
+            bottom: 30px;
+
+            width: 190px;
+
+            height: 190px;
+
+            border-radius: 50%;
+
+            background:
+                    rgba(255,255,255,.12);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 100px;
+
+            animation:
+                    studentFloat 5s
+                    ease-in-out
+                    infinite;
+
+            z-index: 2;
+        }
+
+
+        @keyframes studentFloat {
+
+            0%,100% {
+
+                transform:
+                        translateY(0)
+                        rotate(-2deg);
+
+            }
+
+            50% {
+
+                transform:
+                        translateY(-15px)
+                        rotate(2deg);
+
+            }
+        }
+
+
+        /* =================================
+           RIGHT FORM PANEL
+        ================================= */
+
+        .form-panel {
+
+            padding:
+                    50px 65px;
+
+            background:
+                    rgba(255,255,255,.72);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .register-form {
+
+            width: 100%;
+
+            max-width: 430px;
+        }
+
+
+        .form-heading {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .form-heading-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 21px;
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #6366f1,
+                            #8b5cf6
+                    );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 32px;
+
+            box-shadow:
+                    0 10px 25px
+                    rgba(99,102,241,.25);
+        }
+
+
+        .form-heading h2 {
+
+            font-size: 34px;
+
+            font-weight: 800;
+
+            color: #29264c;
+
+            margin-bottom: 7px;
+        }
+
+
+        .form-heading p {
+
+            color: #77758b;
+
+            margin: 0;
+        }
+
+
+        /* =================================
+           FORM FIELDS
+        ================================= */
+
+        .field {
+
+            margin-bottom: 19px;
+        }
+
+
+        .field label {
+
+            display: block;
+
+            font-weight: 600;
+
+            color: #44415f;
+
+            margin-bottom: 8px;
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+
+        .input-wrapper i {
+
+            position: absolute;
+
+            left: 16px;
+
+            top: 50%;
+
+            transform:
+                    translateY(-50%);
+
+            color: #8b5cf6;
+
+            z-index: 2;
+        }
+
+
+        .input-wrapper input {
+
+            width: 100%;
+
+            padding:
+                    14px
+                    15px
+                    14px
+                    46px;
+
+            border:
+                    1px solid
+                    #e2e0ef;
+
+            border-radius: 13px;
+
+            outline: none;
+
+            background:
+                    rgba(255,255,255,.85);
+
+            font-size: 15px;
+
+            transition: .25s;
+        }
+
+
+        .input-wrapper input:focus {
+
+            border-color:
+                    #6366f1;
+
+            box-shadow:
+                    0 0 0 4px
+                    rgba(99,102,241,.1);
+        }
+
+
+        /* =================================
+           PASSWORD STRENGTH
+        ================================= */
+
+        .password-strength {
+
+            display: flex;
+
+            gap: 5px;
+
+            margin-top: 8px;
+        }
+
+
+        .strength-bar {
+
+            height: 4px;
+
+            flex: 1;
+
+            border-radius: 5px;
+
+            background: #e5e7eb;
+        }
+
+
+        .strength-text {
+
+            font-size: 12px;
+
+            color: #888;
+
+            margin-top: 5px;
+        }
+
+
+        /* =================================
+           TERMS
+        ================================= */
+
+        .terms {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 9px;
+
+            font-size: 13px;
+
+            color: #77758b;
+
+            margin:
+                    18px 0;
+        }
+
+
+        .terms input {
+
+            margin-top: 3px;
+        }
+
+
+        .terms a {
+
+            color: #6366f1;
+
+            font-weight: 600;
+
+            text-decoration: none;
+        }
+
+
+        /* =================================
+           REGISTER BUTTON
+        ================================= */
+
+        .register-btn {
+
+            width: 100%;
+
+            border: none;
+
+            border-radius: 13px;
+
+            padding: 14px;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #6366f1,
+                            #8b5cf6,
+                            #ec4899
+                    );
+
+            box-shadow:
+                    0 10px 25px
+                    rgba(99,102,241,.28);
+
+            transition: .3s;
+        }
+
+
+        .register-btn:hover {
+
+            transform:
+                    translateY(-3px);
+
+            box-shadow:
+                    0 15px 30px
+                    rgba(99,102,241,.38);
+        }
+
+
+        /* =================================
+           LOGIN LINK
+        ================================= */
+
+        .login-text {
+
+            text-align: center;
+
+            margin-top: 23px;
+
+            color: #77758b;
+
+            font-size: 14px;
+        }
+
+
+        .login-text a {
+
+            color: #6366f1;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+
+        /* =================================
+           BACK HOME
+        ================================= */
+
+        .back-home {
+
+            text-align: center;
+
+            margin-top: 15px;
+        }
+
+
+        .back-home a {
+
+            color: #77758b;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+
+        .back-home a:hover {
+
+            color: #6366f1;
+        }
+
+
+        /* =================================
+           BACKGROUND STICKERS
+        ================================= */
+
+        .sticker {
+
+            position: fixed;
+
+            z-index: 1;
+
+            pointer-events: none;
+
+            font-size: 62px;
+
+            opacity: .14;
+
+            animation:
+                    float 6s
+                    ease-in-out
+                    infinite;
+        }
+
+
+        .sticker-1 {
+
+            top: 7%;
+
+            left: 4%;
+        }
+
+
+        .sticker-2 {
+
+            top: 10%;
+
+            right: 5%;
+
+            animation-delay: 1s;
+        }
+
+
+        .sticker-3 {
+
+            bottom: 8%;
+
+            left: 8%;
+
+            animation-delay: 2s;
+        }
+
+
+        .sticker-4 {
+
+            bottom: 7%;
+
+            right: 7%;
+
+            animation-delay: 3s;
+        }
+
+
+        .sticker-5 {
+
+            top: 45%;
+
+            right: 1%;
+
+            animation-delay: 1.5s;
+        }
+
+
+        @keyframes float {
+
+            0%,100% {
+
+                transform:
+                        translateY(0)
+                        rotate(-4deg);
+
+            }
+
+            50% {
+
+                transform:
+                        translateY(-15px)
+                        rotate(4deg);
+
+            }
+        }
+
+
+        /* =================================
+           RESPONSIVE
+        ================================= */
+
+        @media(max-width: 950px) {
+
+            .register-container {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .register-visual {
+
+                min-height: 430px;
+            }
+
+
+            .register-visual h1 {
+
+                margin-top: 45px;
+
+                font-size: 38px;
+            }
+
+
+            .student-illustration {
+
+                width: 130px;
+
+                height: 130px;
+
+                font-size: 70px;
+
+                right: 35px;
+
+                bottom: 25px;
+            }
+        }
+
+
+        @media(max-width: 600px) {
+
+            .register-wrapper {
+
+                padding: 15px;
+            }
+
+
+            .register-visual,
+            .form-panel {
+
+                padding:
+                        35px 25px;
+            }
+
+
+            .register-visual h1 {
+
+                font-size: 32px;
+            }
+
+
+            .student-illustration {
+
+                display: none;
+            }
+
+
+            .form-heading h2 {
+
+                font-size: 29px;
+            }
+
+
+            .benefit {
+
+                font-size: 13px;
+            }
+        }
+
+    </style>
 
 </head>
 
-<body class="bg-primary bg-gradient">
 
-<div class="container">
+<body>
 
-    <div class="row justify-content-center mt-5">
 
-        <div class="col-md-5">
+<!-- =================================
+     FLOATING DECORATIONS
+================================== -->
 
-            <div class="card shadow-lg border-0 rounded-4">
-                <div class="card-body">
+<div class="sticker sticker-1">
+    💻
+</div>
 
-                    <h3 class="text-center mb-4 text-success">
-                        Register
+<div class="sticker sticker-2">
+    📚
+</div>
 
-                    </h3>
+<div class="sticker sticker-3">
+    🎓
+</div>
 
-                    <form id="registerForm">
+<div class="sticker sticker-4">
+    💡
+</div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="fullName"
-                                    placeholder="Enter your full name"
-                                    required>
-                        </div>
+<div class="sticker sticker-5">
+    🤖
+</div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input
-                                    type="email"
-                                    class="form-control"
-                                    id="email"
-                                    placeholder="Enter your email"
-                                    required>
-                        </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Password</label>
-                            <input
-                                    type="password"
-                                    class="form-control"
-                                    id="password"
-                                    placeholder="Create password"
-                                    required>
-                        </div>
+<div class="register-wrapper">
 
-                        <div class="mb-3">
-                            <label class="form-label">Confirm Password</label>
-                            <input
-                                    type="password"
-                                    class="form-control"
-                                    id="confirmPassword"
-                                    placeholder="Confirm password"
-                                    required>
-                        </div>
+    <div class="register-container">
 
-                        <button
-                                type="button"
-                                class="btn btn-success w-100"
-                                onclick="registerUser()">
 
-                            Create Account
+        <!-- =================================
+             LEFT VISUAL
+        ================================== -->
 
-                        </button>
+        <div class="register-visual">
 
-                        <p class="text-center mt-3">
+            <div class="visual-content">
 
-                            Already have an account?
 
-                            <a href="login.html">Login</a>
+                <!-- LOGO -->
 
-                        </p>
+                <div class="logo">
 
-                    </form>
+                    <div class="logo-icon">
+                        🤖
+                    </div>
+
+                    CareerPilotAI
 
                 </div>
+
+
+                <!-- HEADING -->
+
+                <h1>
+
+                    Build Your
+                    <br>
+
+                    <span>Career Journey 🚀</span>
+
+                </h1>
+
+
+                <p class="visual-description">
+
+                    Create your CareerPilotAI account and get
+                    access to personalized interview practice,
+                    performance tracking and career preparation
+                    tools.
+
+                </p>
+
+
+                <!-- BENEFITS -->
+
+                <div class="benefits">
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            🤖
+                        </div>
+
+                        Practice AI-powered interviews
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            📊
+                        </div>
+
+                        Track your interview performance
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            📄
+                        </div>
+
+                        Prepare and manage your resume
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            🎓
+                        </div>
+
+                        Prepare for your dream career
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- STUDENT -->
+
+            <div class="student-illustration">
+
+                👨‍💻
 
             </div>
 
         </div>
 
+
+        <!-- =================================
+             RIGHT FORM
+        ================================== -->
+
+        <div class="form-panel">
+
+            <div class="register-form">
+
+
+                <div class="form-heading">
+
+                    <div class="form-heading-icon">
+
+                        🚀
+
+                    </div>
+
+                    <h2>
+                        Create Account
+                    </h2>
+
+                    <p>
+                        Start your CareerPilotAI journey today
+                    </p>
+
+                </div>
+
+
+                <form id="registerForm">
+
+
+                    <!-- NAME -->
+
+                    <div class="field">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <input
+                                    type="text"
+                                    id="name"
+                                    placeholder="Enter your full name"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="field">
+
+                        <label>
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="Enter your email"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="field">
+
+                        <label>
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="Create a password"
+                                    required
+                            >
+
+                        </div>
+
+
+                        <div class="password-strength">
+
+                            <div class="strength-bar"
+                                 id="bar1"></div>
+
+                            <div class="strength-bar"
+                                 id="bar2"></div>
+
+                            <div class="strength-bar"
+                                 id="bar3"></div>
+
+                            <div class="strength-bar"
+                                 id="bar4"></div>
+
+                        </div>
+
+                        <div class="strength-text"
+                             id="strengthText">
+
+                            Use at least 8 characters.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="field">
+
+                        <label>
+                            Confirm Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                            <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Confirm your password"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TERMS -->
+
+                    <label class="terms">
+
+                        <input
+                                type="checkbox"
+                                id="terms"
+                                required
+                        >
+
+                        <span>
+
+                            I agree to the
+                            <a href="#">
+                                Terms & Conditions
+                            </a>
+                            and understand how CareerPilotAI
+                            handles my account information.
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- REGISTER -->
+
+                    <button
+                            type="submit"
+                            class="register-btn">
+
+                        <i class="fa-solid fa-user-plus me-2"></i>
+
+                        Create My Account
+
+                    </button>
+
+
+                </form>
+
+
+                <!-- LOGIN -->
+
+                <div class="login-text">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Sign In
+                    </a>
+
+                </div>
+
+
+                <!-- HOME -->
+
+                <div class="back-home">
+
+                    <a href="index.html">
+
+                        <i class="fa-solid fa-arrow-left me-1"></i>
+
+                        Back to CareerPilotAI
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
     </div>
 
 </div>
+
+
 <script>
 
-    async function registerUser(){
+    /* =================================
+       PASSWORD STRENGTH
+    ================================== */
 
-        const fullName=document.getElementById("fullName").value.trim();
-        const email=document.getElementById("email").value.trim();
-        const password=document.getElementById("password").value;
-        const confirmPassword=document.getElementById("confirmPassword").value;
+    const password =
+        document.getElementById("password");
 
-        if(fullName==="" || email==="" || password===""){
-            alert("Please fill all fields.");
-            return;
-        }
+    const strengthText =
+        document.getElementById("strengthText");
 
-        if(password!==confirmPassword){
-            alert("Passwords do not match.");
-            return;
-        }
+    const bars = [
 
-        const user={
-            fullName:fullName,
-            email:email,
-            password:password
-        };
+        document.getElementById("bar1"),
 
-        const response=await fetch("http://localhost:8081/api/users/register",{
+        document.getElementById("bar2"),
 
-            method:"POST",
+        document.getElementById("bar3"),
 
-            headers:{
-                "Content-Type":"application/json"
-            },
+        document.getElementById("bar4")
 
-            body:JSON.stringify(user)
+    ];
+
+
+    password.addEventListener("input", function() {
+
+        const value = password.value;
+
+        let strength = 0;
+
+
+        if (value.length >= 8)
+            strength++;
+
+        if (/[A-Z]/.test(value))
+            strength++;
+
+        if (/[0-9]/.test(value))
+            strength++;
+
+        if (/[^A-Za-z0-9]/.test(value))
+            strength++;
+
+
+        bars.forEach(bar => {
+
+            bar.style.background = "#e5e7eb";
 
         });
 
-        const message=await response.text();
 
-        if(response.ok){
+        for (let i = 0; i < strength; i++) {
 
-            alert("Registration Successful!");
-
-            window.location.href="login.html";
-
-        }else{
-
-            alert(message);
+            bars[i].style.background =
+                "linear-gradient(90deg,#6366f1,#ec4899)";
 
         }
 
-    }
+
+        if (strength === 0) {
+
+            strengthText.innerText =
+                "Use at least 8 characters.";
+
+        } else if (strength === 1) {
+
+            strengthText.innerText =
+                "Weak password.";
+
+        } else if (strength === 2) {
+
+            strengthText.innerText =
+                "Fair password.";
+
+        } else if (strength === 3) {
+
+            strengthText.innerText =
+                "Good password.";
+
+        } else {
+
+            strengthText.innerText =
+                "Strong password! 🔐";
+
+        }
+
+    });
+
+
+    /* =================================
+       REGISTER
+    ================================== */
+
+    document
+        .getElementById("registerForm")
+        .addEventListener("submit", async function(e) {
+
+            e.preventDefault();
+
+
+            const name =
+                document.getElementById("name").value.trim();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+
+            /* PASSWORD CHECK */
+
+            if (password !== confirmPassword) {
+
+                alert(
+                    "Passwords do not match."
+                );
+
+                return;
+
+            }
+
+
+            if (password.length < 8) {
+
+                alert(
+                    "Password must contain at least 8 characters."
+                );
+
+                return;
+
+            }
+
+
+            const request = {
+
+                name: name,
+
+                email: email,
+
+                password: password
+
+            };
+
+
+            try {
+
+                const response = await fetch(
+
+                    "http://localhost:8081/api/users/register",
+
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify(request)
+
+                    }
+
+                );
+
+
+                const result =
+                    await response.text();
+
+
+                if (response.ok) {
+
+                    alert(
+                        "🎉 Account created successfully!"
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                } else {
+
+                    alert(
+                        "Registration failed: "
+                        + result
+                    );
+
+                }
+
+
+            } catch(error) {
+
+                console.error(error);
+
+                alert(
+                    "Unable to connect to CareerPilotAI server."
+                );
+
+            }
+
+        });
 
 </script>
 
+
 </body>
+
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Create Account | CareerPilotAI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", sans-serif;
+
+            background:
+                    radial-gradient(
+                            circle at 10% 80%,
+                            #ddd6fe 0%,
+                            transparent 30%
+                    ),
+                    radial-gradient(
+                            circle at 90% 15%,
+                            #fbcfe8 0%,
+                            transparent 30%
+                    ),
+                    linear-gradient(
+                            135deg,
+                            #eef2ff,
+                            #faf5ff,
+                            #ecfeff
+                    );
+
+            overflow-x: hidden;
+        }
+
+        /* =================================
+           MAIN WRAPPER
+        ================================= */
+
+        .register-wrapper {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 35px;
+        }
+
+
+        .register-container {
+
+            width: 100%;
+
+            max-width: 1150px;
+
+            min-height: 700px;
+
+            display: grid;
+
+            grid-template-columns:
+                .95fr
+                1.05fr;
+
+            background:
+                    rgba(255,255,255,.55);
+
+            backdrop-filter: blur(25px);
+
+            border:
+                    1px solid
+                    rgba(255,255,255,.7);
+
+            border-radius: 35px;
+
+            overflow: hidden;
+
+            box-shadow:
+                    0 30px 80px
+                    rgba(60,50,120,.16);
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* =================================
+           LEFT PANEL
+        ================================= */
+
+        .register-visual {
+
+            position: relative;
+
+            padding: 55px;
+
+            background:
+                    linear-gradient(
+                            145deg,
+                            #4338ca,
+                            #6366f1 40%,
+                            #8b5cf6 70%,
+                            #ec4899
+                    );
+
+            color: white;
+
+            overflow: hidden;
+        }
+
+
+        .register-visual::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 370px;
+
+            height: 370px;
+
+            border-radius: 50%;
+
+            background:
+                    rgba(255,255,255,.08);
+
+            top: -150px;
+
+            left: -120px;
+        }
+
+
+        .register-visual::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 480px;
+
+            height: 480px;
+
+            border-radius: 50%;
+
+            background:
+                    rgba(255,255,255,.06);
+
+            bottom: -280px;
+
+            right: -180px;
+        }
+
+
+        .visual-content {
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+
+        /* =================================
+           LOGO
+        ================================= */
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            font-size: 25px;
+
+            font-weight: 750;
+        }
+
+
+        .logo-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            border-radius: 16px;
+
+            background:
+                    rgba(255,255,255,.18);
+
+            backdrop-filter: blur(10px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 26px;
+
+            box-shadow:
+                    0 8px 25px
+                    rgba(0,0,0,.12);
+        }
+
+
+        /* =================================
+           VISUAL CONTENT
+        ================================= */
+
+        .register-visual h1 {
+
+            font-size: 45px;
+
+            line-height: 1.1;
+
+            font-weight: 800;
+
+            margin-top: 75px;
+
+            max-width: 500px;
+        }
+
+
+        .register-visual h1 span {
+
+            color: #fde68a;
+        }
+
+
+        .visual-description {
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            color:
+                    rgba(255,255,255,.86);
+
+            max-width: 500px;
+
+            margin-top: 20px;
+        }
+
+
+        /* =================================
+           BENEFITS
+        ================================= */
+
+        .benefits {
+
+            margin-top: 30px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+        }
+
+
+        .benefit {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 11px 15px;
+
+            width: fit-content;
+
+            border-radius: 14px;
+
+            background:
+                    rgba(255,255,255,.12);
+
+            border:
+                    1px solid
+                    rgba(255,255,255,.14);
+
+            backdrop-filter: blur(10px);
+
+            font-size: 14px;
+        }
+
+
+        .benefit-icon {
+
+            width: 32px;
+
+            height: 32px;
+
+            border-radius: 10px;
+
+            background:
+                    rgba(255,255,255,.18);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        /* =================================
+           FLOATING STUDENT
+        ================================= */
+
+        .student-illustration {
+
+            position: absolute;
+
+            right: 50px;
+
+            bottom: 30px;
+
+            width: 190px;
+
+            height: 190px;
+
+            border-radius: 50%;
+
+            background:
+                    rgba(255,255,255,.12);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 100px;
+
+            animation:
+                    studentFloat 5s
+                    ease-in-out
+                    infinite;
+
+            z-index: 2;
+        }
+
+
+        @keyframes studentFloat {
+
+            0%,100% {
+
+                transform:
+                        translateY(0)
+                        rotate(-2deg);
+
+            }
+
+            50% {
+
+                transform:
+                        translateY(-15px)
+                        rotate(2deg);
+
+            }
+        }
+
+
+        /* =================================
+           RIGHT FORM PANEL
+        ================================= */
+
+        .form-panel {
+
+            padding:
+                    50px 65px;
+
+            background:
+                    rgba(255,255,255,.72);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .register-form {
+
+            width: 100%;
+
+            max-width: 430px;
+        }
+
+
+        .form-heading {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .form-heading-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 21px;
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #6366f1,
+                            #8b5cf6
+                    );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 32px;
+
+            box-shadow:
+                    0 10px 25px
+                    rgba(99,102,241,.25);
+        }
+
+
+        .form-heading h2 {
+
+            font-size: 34px;
+
+            font-weight: 800;
+
+            color: #29264c;
+
+            margin-bottom: 7px;
+        }
+
+
+        .form-heading p {
+
+            color: #77758b;
+
+            margin: 0;
+        }
+
+
+        /* =================================
+           FORM FIELDS
+        ================================= */
+
+        .field {
+
+            margin-bottom: 19px;
+        }
+
+
+        .field label {
+
+            display: block;
+
+            font-weight: 600;
+
+            color: #44415f;
+
+            margin-bottom: 8px;
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+
+        .input-wrapper i {
+
+            position: absolute;
+
+            left: 16px;
+
+            top: 50%;
+
+            transform:
+                    translateY(-50%);
+
+            color: #8b5cf6;
+
+            z-index: 2;
+        }
+
+
+        .input-wrapper input {
+
+            width: 100%;
+
+            padding:
+                    14px
+                    15px
+                    14px
+                    46px;
+
+            border:
+                    1px solid
+                    #e2e0ef;
+
+            border-radius: 13px;
+
+            outline: none;
+
+            background:
+                    rgba(255,255,255,.85);
+
+            font-size: 15px;
+
+            transition: .25s;
+        }
+
+
+        .input-wrapper input:focus {
+
+            border-color:
+                    #6366f1;
+
+            box-shadow:
+                    0 0 0 4px
+                    rgba(99,102,241,.1);
+        }
+
+
+        /* =================================
+           PASSWORD STRENGTH
+        ================================= */
+
+        .password-strength {
+
+            display: flex;
+
+            gap: 5px;
+
+            margin-top: 8px;
+        }
+
+
+        .strength-bar {
+
+            height: 4px;
+
+            flex: 1;
+
+            border-radius: 5px;
+
+            background: #e5e7eb;
+        }
+
+
+        .strength-text {
+
+            font-size: 12px;
+
+            color: #888;
+
+            margin-top: 5px;
+        }
+
+
+        /* =================================
+           TERMS
+        ================================= */
+
+        .terms {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 9px;
+
+            font-size: 13px;
+
+            color: #77758b;
+
+            margin:
+                    18px 0;
+        }
+
+
+        .terms input {
+
+            margin-top: 3px;
+        }
+
+
+        .terms a {
+
+            color: #6366f1;
+
+            font-weight: 600;
+
+            text-decoration: none;
+        }
+
+
+        /* =================================
+           REGISTER BUTTON
+        ================================= */
+
+        .register-btn {
+
+            width: 100%;
+
+            border: none;
+
+            border-radius: 13px;
+
+            padding: 14px;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #6366f1,
+                            #8b5cf6,
+                            #ec4899
+                    );
+
+            box-shadow:
+                    0 10px 25px
+                    rgba(99,102,241,.28);
+
+            transition: .3s;
+        }
+
+
+        .register-btn:hover {
+
+            transform:
+                    translateY(-3px);
+
+            box-shadow:
+                    0 15px 30px
+                    rgba(99,102,241,.38);
+        }
+
+
+        /* =================================
+           LOGIN LINK
+        ================================= */
+
+        .login-text {
+
+            text-align: center;
+
+            margin-top: 23px;
+
+            color: #77758b;
+
+            font-size: 14px;
+        }
+
+
+        .login-text a {
+
+            color: #6366f1;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+
+        /* =================================
+           BACK HOME
+        ================================= */
+
+        .back-home {
+
+            text-align: center;
+
+            margin-top: 15px;
+        }
+
+
+        .back-home a {
+
+            color: #77758b;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+
+        .back-home a:hover {
+
+            color: #6366f1;
+        }
+
+
+        /* =================================
+           BACKGROUND STICKERS
+        ================================= */
+
+        .sticker {
+
+            position: fixed;
+
+            z-index: 1;
+
+            pointer-events: none;
+
+            font-size: 62px;
+
+            opacity: .14;
+
+            animation:
+                    float 6s
+                    ease-in-out
+                    infinite;
+        }
+
+
+        .sticker-1 {
+
+            top: 7%;
+
+            left: 4%;
+        }
+
+
+        .sticker-2 {
+
+            top: 10%;
+
+            right: 5%;
+
+            animation-delay: 1s;
+        }
+
+
+        .sticker-3 {
+
+            bottom: 8%;
+
+            left: 8%;
+
+            animation-delay: 2s;
+        }
+
+
+        .sticker-4 {
+
+            bottom: 7%;
+
+            right: 7%;
+
+            animation-delay: 3s;
+        }
+
+
+        .sticker-5 {
+
+            top: 45%;
+
+            right: 1%;
+
+            animation-delay: 1.5s;
+        }
+
+
+        @keyframes float {
+
+            0%,100% {
+
+                transform:
+                        translateY(0)
+                        rotate(-4deg);
+
+            }
+
+            50% {
+
+                transform:
+                        translateY(-15px)
+                        rotate(4deg);
+
+            }
+        }
+
+
+        /* =================================
+           RESPONSIVE
+        ================================= */
+
+        @media(max-width: 950px) {
+
+            .register-container {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .register-visual {
+
+                min-height: 430px;
+            }
+
+
+            .register-visual h1 {
+
+                margin-top: 45px;
+
+                font-size: 38px;
+            }
+
+
+            .student-illustration {
+
+                width: 130px;
+
+                height: 130px;
+
+                font-size: 70px;
+
+                right: 35px;
+
+                bottom: 25px;
+            }
+        }
+
+
+        @media(max-width: 600px) {
+
+            .register-wrapper {
+
+                padding: 15px;
+            }
+
+
+            .register-visual,
+            .form-panel {
+
+                padding:
+                        35px 25px;
+            }
+
+
+            .register-visual h1 {
+
+                font-size: 32px;
+            }
+
+
+            .student-illustration {
+
+                display: none;
+            }
+
+
+            .form-heading h2 {
+
+                font-size: 29px;
+            }
+
+
+            .benefit {
+
+                font-size: 13px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     FLOATING DECORATIONS
+================================== -->
+
+<div class="sticker sticker-1">
+    💻
+</div>
+
+<div class="sticker sticker-2">
+    📚
+</div>
+
+<div class="sticker sticker-3">
+    🎓
+</div>
+
+<div class="sticker sticker-4">
+    💡
+</div>
+
+<div class="sticker sticker-5">
+    🤖
+</div>
+
+
+<div class="register-wrapper">
+
+    <div class="register-container">
+
+
+        <!-- =================================
+             LEFT VISUAL
+        ================================== -->
+
+        <div class="register-visual">
+
+            <div class="visual-content">
+
+
+                <!-- LOGO -->
+
+                <div class="logo">
+
+                    <div class="logo-icon">
+                        🤖
+                    </div>
+
+                    CareerPilotAI
+
+                </div>
+
+
+                <!-- HEADING -->
+
+                <h1>
+
+                    Build Your
+                    <br>
+
+                    <span>Career Journey 🚀</span>
+
+                </h1>
+
+
+                <p class="visual-description">
+
+                    Create your CareerPilotAI account and get
+                    access to personalized interview practice,
+                    performance tracking and career preparation
+                    tools.
+
+                </p>
+
+
+                <!-- BENEFITS -->
+
+                <div class="benefits">
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            🤖
+                        </div>
+
+                        Practice AI-powered interviews
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            📊
+                        </div>
+
+                        Track your interview performance
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            📄
+                        </div>
+
+                        Prepare and manage your resume
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            🎓
+                        </div>
+
+                        Prepare for your dream career
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- STUDENT -->
+
+            <div class="student-illustration">
+
+                👨‍💻
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             RIGHT FORM
+        ================================== -->
+
+        <div class="form-panel">
+
+            <div class="register-form">
+
+
+                <div class="form-heading">
+
+                    <div class="form-heading-icon">
+
+                        🚀
+
+                    </div>
+
+                    <h2>
+                        Create Account
+                    </h2>
+
+                    <p>
+                        Start your CareerPilotAI journey today
+                    </p>
+
+                </div>
+
+
+                <form id="registerForm">
+
+
+                    <!-- NAME -->
+
+                    <div class="field">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <input
+                                    type="text"
+                                    id="name"
+                                    placeholder="Enter your full name"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="field">
+
+                        <label>
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="Enter your email"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="field">
+
+                        <label>
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="Create a password"
+                                    required
+                            >
+
+                        </div>
+
+
+                        <div class="password-strength">
+
+                            <div class="strength-bar"
+                                 id="bar1"></div>
+
+                            <div class="strength-bar"
+                                 id="bar2"></div>
+
+                            <div class="strength-bar"
+                                 id="bar3"></div>
+
+                            <div class="strength-bar"
+                                 id="bar4"></div>
+
+                        </div>
+
+                        <div class="strength-text"
+                             id="strengthText">
+
+                            Use at least 8 characters.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="field">
+
+                        <label>
+                            Confirm Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                            <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Confirm your password"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TERMS -->
+
+                    <label class="terms">
+
+                        <input
+                                type="checkbox"
+                                id="terms"
+                                required
+                        >
+
+                        <span>
+
+                            I agree to the
+                            <a href="#">
+                                Terms & Conditions
+                            </a>
+                            and understand how CareerPilotAI
+                            handles my account information.
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- REGISTER -->
+
+                    <button
+                            type="submit"
+                            class="register-btn">
+
+                        <i class="fa-solid fa-user-plus me-2"></i>
+
+                        Create My Account
+
+                    </button>
+
+
+                </form>
+
+
+                <!-- LOGIN -->
+
+                <div class="login-text">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Sign In
+                    </a>
+
+                </div>
+
+
+                <!-- HOME -->
+
+                <div class="back-home">
+
+                    <a href="index.html">
+
+                        <i class="fa-solid fa-arrow-left me-1"></i>
+
+                        Back to CareerPilotAI
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /* =================================
+       PASSWORD STRENGTH
+    ================================== */
+
+    const password =
+        document.getElementById("password");
+
+    const strengthText =
+        document.getElementById("strengthText");
+
+    const bars = [
+
+        document.getElementById("bar1"),
+
+        document.getElementById("bar2"),
+
+        document.getElementById("bar3"),
+
+        document.getElementById("bar4")
+
+    ];
+
+
+    password.addEventListener("input", function() {
+
+        const value = password.value;
+
+        let strength = 0;
+
+
+        if (value.length >= 8)
+            strength++;
+
+        if (/[A-Z]/.test(value))
+            strength++;
+
+        if (/[0-9]/.test(value))
+            strength++;
+
+        if (/[^A-Za-z0-9]/.test(value))
+            strength++;
+
+
+        bars.forEach(bar => {
+
+            bar.style.background = "#e5e7eb";
+
+        });
+
+
+        for (let i = 0; i < strength; i++) {
+
+            bars[i].style.background =
+                "linear-gradient(90deg,#6366f1,#ec4899)";
+
+        }
+
+
+        if (strength === 0) {
+
+            strengthText.innerText =
+                "Use at least 8 characters.";
+
+        } else if (strength === 1) {
+
+            strengthText.innerText =
+                "Weak password.";
+
+        } else if (strength === 2) {
+
+            strengthText.innerText =
+                "Fair password.";
+
+        } else if (strength === 3) {
+
+            strengthText.innerText =
+                "Good password.";
+
+        } else {
+
+            strengthText.innerText =
+                "Strong password! 🔐";
+
+        }
+
+    });
+
+
+    /* =================================
+       REGISTER
+    ================================== */
+
+    document
+        .getElementById("registerForm")
+        .addEventListener("submit", async function(e) {
+
+            e.preventDefault();
+
+
+            const name =
+                document.getElementById("name").value.trim();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+
+            /* PASSWORD CHECK */
+
+            if (password !== confirmPassword) {
+
+                alert(
+                    "Passwords do not match."
+                );
+
+                return;
+
+            }
+
+
+            if (password.length < 8) {
+
+                alert(
+                    "Password must contain at least 8 characters."
+                );
+
+                return;
+
+            }
+
+
+            const request = {
+
+                name: name,
+
+                email: email,
+
+                password: password
+
+            };
+
+
+            try {
+
+                const response = await fetch(
+
+                    "http://localhost:8081/api/users/register",
+
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify(request)
+
+                    }
+
+                );
+
+
+                const result =
+                    await response.text();
+
+
+                if (response.ok) {
+
+                    alert(
+                        "🎉 Account created successfully!"
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                } else {
+
+                    alert(
+                        "Registration failed: "
+                        + result
+                    );
+
+                }
+
+
+            } catch(error) {
+
+                console.error(error);
+
+                alert(
+                    "Unable to connect to CareerPilotAI server."
+                );
+
+            }
+
+        });
+
+</script>
+
+
+</body>
+
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Create Account | CareerPilotAI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", sans-serif;
+
+            background:
+                    radial-gradient(
+                            circle at 10% 80%,
+                            #ddd6fe 0%,
+                            transparent 30%
+                    ),
+                    radial-gradient(
+                            circle at 90% 15%,
+                            #fbcfe8 0%,
+                            transparent 30%
+                    ),
+                    linear-gradient(
+                            135deg,
+                            #eef2ff,
+                            #faf5ff,
+                            #ecfeff
+                    );
+
+            overflow-x: hidden;
+        }
+
+        /* =================================
+           MAIN WRAPPER
+        ================================= */
+
+        .register-wrapper {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 35px;
+        }
+
+
+        .register-container {
+
+            width: 100%;
+
+            max-width: 1150px;
+
+            min-height: 700px;
+
+            display: grid;
+
+            grid-template-columns:
+                .95fr
+                1.05fr;
+
+            background:
+                    rgba(255,255,255,.55);
+
+            backdrop-filter: blur(25px);
+
+            border:
+                    1px solid
+                    rgba(255,255,255,.7);
+
+            border-radius: 35px;
+
+            overflow: hidden;
+
+            box-shadow:
+                    0 30px 80px
+                    rgba(60,50,120,.16);
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* =================================
+           LEFT PANEL
+        ================================= */
+
+        .register-visual {
+
+            position: relative;
+
+            padding: 55px;
+
+            background:
+                    linear-gradient(
+                            145deg,
+                            #4338ca,
+                            #6366f1 40%,
+                            #8b5cf6 70%,
+                            #ec4899
+                    );
+
+            color: white;
+
+            overflow: hidden;
+        }
+
+
+        .register-visual::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 370px;
+
+            height: 370px;
+
+            border-radius: 50%;
+
+            background:
+                    rgba(255,255,255,.08);
+
+            top: -150px;
+
+            left: -120px;
+        }
+
+
+        .register-visual::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 480px;
+
+            height: 480px;
+
+            border-radius: 50%;
+
+            background:
+                    rgba(255,255,255,.06);
+
+            bottom: -280px;
+
+            right: -180px;
+        }
+
+
+        .visual-content {
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+
+        /* =================================
+           LOGO
+        ================================= */
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            font-size: 25px;
+
+            font-weight: 750;
+        }
+
+
+        .logo-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            border-radius: 16px;
+
+            background:
+                    rgba(255,255,255,.18);
+
+            backdrop-filter: blur(10px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 26px;
+
+            box-shadow:
+                    0 8px 25px
+                    rgba(0,0,0,.12);
+        }
+
+
+        /* =================================
+           VISUAL CONTENT
+        ================================= */
+
+        .register-visual h1 {
+
+            font-size: 45px;
+
+            line-height: 1.1;
+
+            font-weight: 800;
+
+            margin-top: 75px;
+
+            max-width: 500px;
+        }
+
+
+        .register-visual h1 span {
+
+            color: #fde68a;
+        }
+
+
+        .visual-description {
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            color:
+                    rgba(255,255,255,.86);
+
+            max-width: 500px;
+
+            margin-top: 20px;
+        }
+
+
+        /* =================================
+           BENEFITS
+        ================================= */
+
+        .benefits {
+
+            margin-top: 30px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+        }
+
+
+        .benefit {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 11px 15px;
+
+            width: fit-content;
+
+            border-radius: 14px;
+
+            background:
+                    rgba(255,255,255,.12);
+
+            border:
+                    1px solid
+                    rgba(255,255,255,.14);
+
+            backdrop-filter: blur(10px);
+
+            font-size: 14px;
+        }
+
+
+        .benefit-icon {
+
+            width: 32px;
+
+            height: 32px;
+
+            border-radius: 10px;
+
+            background:
+                    rgba(255,255,255,.18);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        /* =================================
+           FLOATING STUDENT
+        ================================= */
+
+        .student-illustration {
+
+            position: absolute;
+
+            right: 50px;
+
+            bottom: 30px;
+
+            width: 190px;
+
+            height: 190px;
+
+            border-radius: 50%;
+
+            background:
+                    rgba(255,255,255,.12);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 100px;
+
+            animation:
+                    studentFloat 5s
+                    ease-in-out
+                    infinite;
+
+            z-index: 2;
+        }
+
+
+        @keyframes studentFloat {
+
+            0%,100% {
+
+                transform:
+                        translateY(0)
+                        rotate(-2deg);
+
+            }
+
+            50% {
+
+                transform:
+                        translateY(-15px)
+                        rotate(2deg);
+
+            }
+        }
+
+
+        /* =================================
+           RIGHT FORM PANEL
+        ================================= */
+
+        .form-panel {
+
+            padding:
+                    50px 65px;
+
+            background:
+                    rgba(255,255,255,.72);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .register-form {
+
+            width: 100%;
+
+            max-width: 430px;
+        }
+
+
+        .form-heading {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .form-heading-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 21px;
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #6366f1,
+                            #8b5cf6
+                    );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 32px;
+
+            box-shadow:
+                    0 10px 25px
+                    rgba(99,102,241,.25);
+        }
+
+
+        .form-heading h2 {
+
+            font-size: 34px;
+
+            font-weight: 800;
+
+            color: #29264c;
+
+            margin-bottom: 7px;
+        }
+
+
+        .form-heading p {
+
+            color: #77758b;
+
+            margin: 0;
+        }
+
+
+        /* =================================
+           FORM FIELDS
+        ================================= */
+
+        .field {
+
+            margin-bottom: 19px;
+        }
+
+
+        .field label {
+
+            display: block;
+
+            font-weight: 600;
+
+            color: #44415f;
+
+            margin-bottom: 8px;
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+
+        .input-wrapper i {
+
+            position: absolute;
+
+            left: 16px;
+
+            top: 50%;
+
+            transform:
+                    translateY(-50%);
+
+            color: #8b5cf6;
+
+            z-index: 2;
+        }
+
+
+        .input-wrapper input {
+
+            width: 100%;
+
+            padding:
+                    14px
+                    15px
+                    14px
+                    46px;
+
+            border:
+                    1px solid
+                    #e2e0ef;
+
+            border-radius: 13px;
+
+            outline: none;
+
+            background:
+                    rgba(255,255,255,.85);
+
+            font-size: 15px;
+
+            transition: .25s;
+        }
+
+
+        .input-wrapper input:focus {
+
+            border-color:
+                    #6366f1;
+
+            box-shadow:
+                    0 0 0 4px
+                    rgba(99,102,241,.1);
+        }
+
+
+        /* =================================
+           PASSWORD STRENGTH
+        ================================= */
+
+        .password-strength {
+
+            display: flex;
+
+            gap: 5px;
+
+            margin-top: 8px;
+        }
+
+
+        .strength-bar {
+
+            height: 4px;
+
+            flex: 1;
+
+            border-radius: 5px;
+
+            background: #e5e7eb;
+        }
+
+
+        .strength-text {
+
+            font-size: 12px;
+
+            color: #888;
+
+            margin-top: 5px;
+        }
+
+
+        /* =================================
+           TERMS
+        ================================= */
+
+        .terms {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 9px;
+
+            font-size: 13px;
+
+            color: #77758b;
+
+            margin:
+                    18px 0;
+        }
+
+
+        .terms input {
+
+            margin-top: 3px;
+        }
+
+
+        .terms a {
+
+            color: #6366f1;
+
+            font-weight: 600;
+
+            text-decoration: none;
+        }
+
+
+        /* =================================
+           REGISTER BUTTON
+        ================================= */
+
+        .register-btn {
+
+            width: 100%;
+
+            border: none;
+
+            border-radius: 13px;
+
+            padding: 14px;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #6366f1,
+                            #8b5cf6,
+                            #ec4899
+                    );
+
+            box-shadow:
+                    0 10px 25px
+                    rgba(99,102,241,.28);
+
+            transition: .3s;
+        }
+
+
+        .register-btn:hover {
+
+            transform:
+                    translateY(-3px);
+
+            box-shadow:
+                    0 15px 30px
+                    rgba(99,102,241,.38);
+        }
+
+
+        /* =================================
+           LOGIN LINK
+        ================================= */
+
+        .login-text {
+
+            text-align: center;
+
+            margin-top: 23px;
+
+            color: #77758b;
+
+            font-size: 14px;
+        }
+
+
+        .login-text a {
+
+            color: #6366f1;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+
+        /* =================================
+           BACK HOME
+        ================================= */
+
+        .back-home {
+
+            text-align: center;
+
+            margin-top: 15px;
+        }
+
+
+        .back-home a {
+
+            color: #77758b;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+
+        .back-home a:hover {
+
+            color: #6366f1;
+        }
+
+
+        /* =================================
+           BACKGROUND STICKERS
+        ================================= */
+
+        .sticker {
+
+            position: fixed;
+
+            z-index: 1;
+
+            pointer-events: none;
+
+            font-size: 62px;
+
+            opacity: .14;
+
+            animation:
+                    float 6s
+                    ease-in-out
+                    infinite;
+        }
+
+
+        .sticker-1 {
+
+            top: 7%;
+
+            left: 4%;
+        }
+
+
+        .sticker-2 {
+
+            top: 10%;
+
+            right: 5%;
+
+            animation-delay: 1s;
+        }
+
+
+        .sticker-3 {
+
+            bottom: 8%;
+
+            left: 8%;
+
+            animation-delay: 2s;
+        }
+
+
+        .sticker-4 {
+
+            bottom: 7%;
+
+            right: 7%;
+
+            animation-delay: 3s;
+        }
+
+
+        .sticker-5 {
+
+            top: 45%;
+
+            right: 1%;
+
+            animation-delay: 1.5s;
+        }
+
+
+        @keyframes float {
+
+            0%,100% {
+
+                transform:
+                        translateY(0)
+                        rotate(-4deg);
+
+            }
+
+            50% {
+
+                transform:
+                        translateY(-15px)
+                        rotate(4deg);
+
+            }
+        }
+
+
+        /* =================================
+           RESPONSIVE
+        ================================= */
+
+        @media(max-width: 950px) {
+
+            .register-container {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .register-visual {
+
+                min-height: 430px;
+            }
+
+
+            .register-visual h1 {
+
+                margin-top: 45px;
+
+                font-size: 38px;
+            }
+
+
+            .student-illustration {
+
+                width: 130px;
+
+                height: 130px;
+
+                font-size: 70px;
+
+                right: 35px;
+
+                bottom: 25px;
+            }
+        }
+
+
+        @media(max-width: 600px) {
+
+            .register-wrapper {
+
+                padding: 15px;
+            }
+
+
+            .register-visual,
+            .form-panel {
+
+                padding:
+                        35px 25px;
+            }
+
+
+            .register-visual h1 {
+
+                font-size: 32px;
+            }
+
+
+            .student-illustration {
+
+                display: none;
+            }
+
+
+            .form-heading h2 {
+
+                font-size: 29px;
+            }
+
+
+            .benefit {
+
+                font-size: 13px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     FLOATING DECORATIONS
+================================== -->
+
+<div class="sticker sticker-1">
+    💻
+</div>
+
+<div class="sticker sticker-2">
+    📚
+</div>
+
+<div class="sticker sticker-3">
+    🎓
+</div>
+
+<div class="sticker sticker-4">
+    💡
+</div>
+
+<div class="sticker sticker-5">
+    🤖
+</div>
+
+
+<div class="register-wrapper">
+
+    <div class="register-container">
+
+
+        <!-- =================================
+             LEFT VISUAL
+        ================================== -->
+
+        <div class="register-visual">
+
+            <div class="visual-content">
+
+
+                <!-- LOGO -->
+
+                <div class="logo">
+
+                    <div class="logo-icon">
+                        🤖
+                    </div>
+
+                    CareerPilotAI
+
+                </div>
+
+
+                <!-- HEADING -->
+
+                <h1>
+
+                    Build Your
+                    <br>
+
+                    <span>Career Journey 🚀</span>
+
+                </h1>
+
+
+                <p class="visual-description">
+
+                    Create your CareerPilotAI account and get
+                    access to personalized interview practice,
+                    performance tracking and career preparation
+                    tools.
+
+                </p>
+
+
+                <!-- BENEFITS -->
+
+                <div class="benefits">
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            🤖
+                        </div>
+
+                        Practice AI-powered interviews
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            📊
+                        </div>
+
+                        Track your interview performance
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            📄
+                        </div>
+
+                        Prepare and manage your resume
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            🎓
+                        </div>
+
+                        Prepare for your dream career
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- STUDENT -->
+
+            <div class="student-illustration">
+
+                👨‍💻
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             RIGHT FORM
+        ================================== -->
+
+        <div class="form-panel">
+
+            <div class="register-form">
+
+
+                <div class="form-heading">
+
+                    <div class="form-heading-icon">
+
+                        🚀
+
+                    </div>
+
+                    <h2>
+                        Create Account
+                    </h2>
+
+                    <p>
+                        Start your CareerPilotAI journey today
+                    </p>
+
+                </div>
+
+
+                <form id="registerForm">
+
+
+                    <!-- NAME -->
+
+                    <div class="field">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <input
+                                    type="text"
+                                    id="name"
+                                    placeholder="Enter your full name"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="field">
+
+                        <label>
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="Enter your email"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="field">
+
+                        <label>
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="Create a password"
+                                    required
+                            >
+
+                        </div>
+
+
+                        <div class="password-strength">
+
+                            <div class="strength-bar"
+                                 id="bar1"></div>
+
+                            <div class="strength-bar"
+                                 id="bar2"></div>
+
+                            <div class="strength-bar"
+                                 id="bar3"></div>
+
+                            <div class="strength-bar"
+                                 id="bar4"></div>
+
+                        </div>
+
+                        <div class="strength-text"
+                             id="strengthText">
+
+                            Use at least 8 characters.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="field">
+
+                        <label>
+                            Confirm Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                            <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Confirm your password"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TERMS -->
+
+                    <label class="terms">
+
+                        <input
+                                type="checkbox"
+                                id="terms"
+                                required
+                        >
+
+                        <span>
+
+                            I agree to the
+                            <a href="#">
+                                Terms & Conditions
+                            </a>
+                            and understand how CareerPilotAI
+                            handles my account information.
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- REGISTER -->
+
+                    <button
+                            type="submit"
+                            class="register-btn">
+
+                        <i class="fa-solid fa-user-plus me-2"></i>
+
+                        Create My Account
+
+                    </button>
+
+
+                </form>
+
+
+                <!-- LOGIN -->
+
+                <div class="login-text">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Sign In
+                    </a>
+
+                </div>
+
+
+                <!-- HOME -->
+
+                <div class="back-home">
+
+                    <a href="index.html">
+
+                        <i class="fa-solid fa-arrow-left me-1"></i>
+
+                        Back to CareerPilotAI
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /* =================================
+       PASSWORD STRENGTH
+    ================================== */
+
+    const password =
+        document.getElementById("password");
+
+    const strengthText =
+        document.getElementById("strengthText");
+
+    const bars = [
+
+        document.getElementById("bar1"),
+
+        document.getElementById("bar2"),
+
+        document.getElementById("bar3"),
+
+        document.getElementById("bar4")
+
+    ];
+
+
+    password.addEventListener("input", function() {
+
+        const value = password.value;
+
+        let strength = 0;
+
+
+        if (value.length >= 8)
+            strength++;
+
+        if (/[A-Z]/.test(value))
+            strength++;
+
+        if (/[0-9]/.test(value))
+            strength++;
+
+        if (/[^A-Za-z0-9]/.test(value))
+            strength++;
+
+
+        bars.forEach(bar => {
+
+            bar.style.background = "#e5e7eb";
+
+        });
+
+
+        for (let i = 0; i < strength; i++) {
+
+            bars[i].style.background =
+                "linear-gradient(90deg,#6366f1,#ec4899)";
+
+        }
+
+
+        if (strength === 0) {
+
+            strengthText.innerText =
+                "Use at least 8 characters.";
+
+        } else if (strength === 1) {
+
+            strengthText.innerText =
+                "Weak password.";
+
+        } else if (strength === 2) {
+
+            strengthText.innerText =
+                "Fair password.";
+
+        } else if (strength === 3) {
+
+            strengthText.innerText =
+                "Good password.";
+
+        } else {
+
+            strengthText.innerText =
+                "Strong password! 🔐";
+
+        }
+
+    });
+
+
+    /* =================================
+       REGISTER
+    ================================== */
+
+    document
+        .getElementById("registerForm")
+        .addEventListener("submit", async function(e) {
+
+            e.preventDefault();
+
+
+            const name =
+                document.getElementById("name").value.trim();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+
+            /* PASSWORD CHECK */
+
+            if (password !== confirmPassword) {
+
+                alert(
+                    "Passwords do not match."
+                );
+
+                return;
+
+            }
+
+
+            if (password.length < 8) {
+
+                alert(
+                    "Password must contain at least 8 characters."
+                );
+
+                return;
+
+            }
+
+
+            const request = {
+
+                name: name,
+
+                email: email,
+
+                password: password
+
+            };
+
+
+            try {
+
+                const response = await fetch(
+
+                    "http://localhost:8081/api/users/register",
+
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify(request)
+
+                    }
+
+                );
+
+
+                const result =
+                    await response.text();
+
+
+                if (response.ok) {
+
+                    alert(
+                        "🎉 Account created successfully!"
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                } else {
+
+                    alert(
+                        "Registration failed: "
+                        + result
+                    );
+
+                }
+
+
+            } catch(error) {
+
+                console.error(error);
+
+                alert(
+                    "Unable to connect to CareerPilotAI server."
+                );
+
+            }
+
+        });
+
+</script>
+
+
+</body>
+
 </html>
