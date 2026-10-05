@@ -4,134 +4,796 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Resume | CareerPilotAI</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <title>CareerPilotAI - Resume</title>
 
-    <link rel="stylesheet"
-          href="css/style.css">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+
+        body {
+            margin: 0;
+            background: #f5f7ff;
+            font-family: Arial, sans-serif;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+
+            min-height: 100vh;
+
+            background:
+                    linear-gradient(
+                            180deg,
+                            #312e81,
+                            #4f46e5,
+                            #6366f1
+                    );
+
+            color: white;
+
+            padding: 25px 18px;
+        }
+
+        .brand {
+
+            font-size: 23px;
+
+            font-weight: bold;
+
+            margin-bottom: 35px;
+        }
+
+        .sidebar a {
+
+            display: block;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 13px 15px;
+
+            border-radius: 12px;
+
+            margin-bottom: 8px;
+
+            transition: .3s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+
+            background:
+                    rgba(255,255,255,.18);
+
+            transform:
+                    translateX(4px);
+        }
+
+        /* MAIN */
+
+        .main-content {
+
+            padding: 25px;
+        }
+
+        .topbar {
+
+            background: white;
+
+            padding: 20px 25px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                    0 5px 20px rgba(0,0,0,.06);
+
+            margin-bottom: 25px;
+        }
+
+        /* HERO */
+
+        .resume-hero {
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #4f46e5,
+                            #7c3aed,
+                            #6366f1
+                    );
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            color: white;
+
+            position: relative;
+
+            overflow: hidden;
+
+            box-shadow:
+                    0 10px 30px
+                    rgba(79,70,229,.25);
+
+            margin-bottom: 25px;
+        }
+
+        .resume-hero::after {
+
+            content: "📄";
+
+            position: absolute;
+
+            right: 45px;
+
+            top: -25px;
+
+            font-size: 130px;
+
+            opacity: .12;
+        }
+
+        .resume-hero h2 {
+
+            font-weight: bold;
+        }
+
+        /* CARDS */
+
+        .resume-card {
+
+            background: white;
+
+            border: none;
+
+            border-radius: 20px;
+
+            box-shadow:
+                    0 8px 25px
+                    rgba(0,0,0,.06);
+
+            height: 100%;
+        }
+
+        .card-title {
+
+            font-weight: bold;
+
+            color: #1f2937;
+        }
+
+        /* UPLOAD */
+
+        .upload-box {
+
+            border: 2px dashed #c7d2fe;
+
+            background: #f8f9ff;
+
+            border-radius: 18px;
+
+            padding: 35px 20px;
+
+            text-align: center;
+
+            transition: .3s;
+        }
+
+        .upload-box:hover {
+
+            border-color: #6366f1;
+
+            background: #f1f3ff;
+        }
+
+        .upload-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            margin: auto;
+
+            border-radius: 20px;
+
+            background: #ede9fe;
+
+            color: #6366f1;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+        }
+
+        /* RESUME DETAILS */
+
+        .resume-details {
+
+            display: none;
+
+            padding: 20px;
+
+            background: #f8f9ff;
+
+            border-radius: 16px;
+
+            border: 1px solid #eef0ff;
+        }
+
+        .file-icon {
+
+            width: 60px;
+
+            height: 60px;
+
+            background: #fee2e2;
+
+            color: #dc2626;
+
+            border-radius: 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 27px;
+        }
+
+        .detail-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 10px 0;
+
+            border-bottom:
+                    1px solid #e5e7eb;
+        }
+
+        .detail-row:last-child {
+
+            border-bottom: none;
+        }
+
+        .detail-label {
+
+            color: #6b7280;
+
+            font-size: 14px;
+        }
+
+        .detail-value {
+
+            font-weight: 600;
+
+            color: #1f2937;
+        }
+
+        /* STATUS */
+
+        .status-badge {
+
+            display: inline-block;
+
+            padding: 6px 13px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            background: #dcfce7;
+
+            color: #15803d;
+        }
+
+        /* EMPTY */
+
+        .empty-state {
+
+            text-align: center;
+
+            padding: 35px;
+
+            color: #6b7280;
+        }
+
+        .empty-state i {
+
+            font-size: 50px;
+
+            color: #c7d2fe;
+
+            margin-bottom: 15px;
+        }
+
+        /* BUTTONS */
+
+        .btn-primary {
+
+            background: #4f46e5;
+
+            border-color: #4f46e5;
+        }
+
+        .btn-primary:hover {
+
+            background: #4338ca;
+
+            border-color: #4338ca;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:768px) {
+
+            .sidebar {
+
+                min-height: auto;
+            }
+
+            .main-content {
+
+                padding: 15px;
+            }
+
+            .resume-hero {
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<div class="sticker one">📄</div>
-<div class="sticker two">🤖</div>
-<div class="sticker three">🎓</div>
-<div class="sticker four">💻</div>
+<div class="container-fluid">
 
-<div class="page-container">
-
-    <div class="page-header">
-
-        <h2>
-            📄 Resume Center
-        </h2>
-
-        <p class="text-muted mb-0">
-
-            Manage your resume for your future AI-powered
-            career analysis.
-
-        </p>
-
-    </div>
+    <div class="row">
 
 
-    <div class="modern-card text-center py-5">
+        <!-- SIDEBAR -->
 
-        <div style="font-size:70px;">
-            📄
-        </div>
+        <div class="col-md-2 sidebar">
 
-        <h3 class="fw-bold mt-3">
-            Upload Your Resume
-        </h3>
+            <div class="brand text-center">
 
-        <p class="text-muted">
+                🚀 CareerPilotAI
 
-            Upload your resume and prepare it for
-            AI-powered analysis.
-
-        </p>
-
-
-        <div class="mx-auto"
-             style="max-width:500px;">
-
-            <input type="file"
-                   id="resumeFile"
-                   class="form-control"
-                   accept=".pdf,.doc,.docx">
-
-
-            <button class="btn btn-gradient mt-3"
-                    onclick="uploadResume()">
-
-                📤 Upload Resume
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="modern-card mt-4">
-
-        <h4 class="fw-bold">
-            🤖 Coming Soon: AI Resume Analysis
-        </h4>
-
-        <p class="text-muted">
-
-            After uploading your resume, CareerPilotAI
-            will analyze it and provide:
-
-        </p>
-
-        <div class="row g-3">
-
-            <div class="col-md-3">
-                <div class="p-3 rounded bg-light">
-                    📊 ATS Score
-                </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="p-3 rounded bg-light">
-                    💻 Missing Skills
-                </div>
-            </div>
 
-            <div class="col-md-3">
-                <div class="p-3 rounded bg-light">
-                    📝 Suggestions
-                </div>
-            </div>
+            <a href="dashboard.html">
 
-            <div class="col-md-3">
-                <div class="p-3 rounded bg-light">
-                    🤖 AI Questions
-                </div>
-            </div>
+                <i class="fa-solid fa-house me-2"></i>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="interview.html">
+
+                <i class="fa-solid fa-robot me-2"></i>
+
+                AI Interview
+
+            </a>
+
+
+            <a href="resume.html"
+               class="active">
+
+                <i class="fa-solid fa-file-lines me-2"></i>
+
+                Resume
+
+            </a>
+
+
+            <a href="progress.html">
+
+                <i class="fa-solid fa-chart-line me-2"></i>
+
+                Progress
+
+            </a>
+
+
+            <a href="history.html">
+
+                <i class="fa-solid fa-clock-rotate-left me-2"></i>
+
+                History
+
+            </a>
+
+
+            <a href="profile.html">
+
+                <i class="fa-solid fa-user me-2"></i>
+
+                Profile
+
+            </a>
+
+
+            <a href="login.html">
+
+                <i class="fa-solid fa-right-from-bracket me-2"></i>
+
+                Logout
+
+            </a>
 
         </div>
 
-    </div>
+
+        <!-- MAIN CONTENT -->
+
+        <div class="col-md-10 main-content">
 
 
-    <div class="mt-4">
+            <!-- TOPBAR -->
 
-        <a href="dashboard.html"
-           class="btn btn-outline-primary">
+            <div class="topbar">
 
-            ← Dashboard
+                <h4 class="mb-1">
 
-        </a>
+                    Resume Manager 📄
+
+                </h4>
+
+                <p class="text-muted mb-0">
+
+                    Upload and manage your resume for
+                    better interview preparation.
+
+                </p>
+
+            </div>
+
+
+            <!-- HERO -->
+
+            <div class="resume-hero">
+
+                <h2>
+
+                    Build Your Professional Profile 🚀
+
+                </h2>
+
+                <p class="mb-0">
+
+                    Keep your latest resume ready for
+                    your CareerPilotAI interview journey.
+
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- UPLOAD CARD -->
+
+                <div class="col-lg-5">
+
+                    <div class="card resume-card">
+
+                        <div class="card-body p-4">
+
+                            <h5 class="card-title mb-4">
+
+                                <i class="fa-solid
+                                          fa-cloud-arrow-up
+                                          text-primary me-2"></i>
+
+                                Upload Resume
+
+                            </h5>
+
+
+                            <form
+                                    id="resumeForm"
+                                    enctype="multipart/form-data">
+
+
+                                <div class="upload-box">
+
+
+                                    <div class="upload-icon">
+
+                                        <i class="fa-solid
+                                                  fa-file-arrow-up"></i>
+
+                                    </div>
+
+
+                                    <h6>
+
+                                        Upload your resume
+
+                                    </h6>
+
+
+                                    <p class="text-muted small">
+
+                                        PDF, DOC or DOCX
+
+                                    </p>
+
+
+                                    <input
+                                            type="file"
+                                            id="resumeFile"
+                                            name="file"
+                                            class="form-control mt-3"
+                                            accept=".pdf,.doc,.docx"
+                                            required>
+
+
+                                    <button
+                                            type="submit"
+                                            class="btn btn-primary mt-3">
+
+                                        <i class="fa-solid
+                                                  fa-upload me-2"></i>
+
+                                        Upload Resume
+
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+
+                            <div
+                                    id="uploadMessage"
+                                    class="mt-3 text-center">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CURRENT RESUME -->
+
+                <div class="col-lg-7">
+
+                    <div class="card resume-card">
+
+                        <div class="card-body p-4">
+
+                            <h5 class="card-title mb-4">
+
+                                <i class="fa-solid
+                                          fa-file-circle-check
+                                          text-success me-2"></i>
+
+                                My Resume
+
+                            </h5>
+
+
+                            <!-- LOADING -->
+
+                            <div
+                                    id="loadingState"
+                                    class="text-center py-4">
+
+                                <div
+                                        class="spinner-border text-primary">
+
+                                </div>
+
+                                <p class="text-muted mt-2">
+
+                                    Loading resume...
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- EMPTY -->
+
+                            <div
+                                    id="emptyState"
+                                    class="empty-state"
+                                    style="display:none;">
+
+                                <i class="fa-regular
+                                          fa-file-lines
+                                          d-block"></i>
+
+                                <h6>
+
+                                    No Resume Uploaded
+
+                                </h6>
+
+                                <p>
+
+                                    Upload your resume to
+                                    get started.
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- RESUME DETAILS -->
+
+                            <div
+                                    id="resumeDetails"
+                                    class="resume-details">
+
+
+                                <div class="d-flex
+                                            align-items-center
+                                            mb-4">
+
+                                    <div class="file-icon">
+
+                                        <i class="fa-solid
+                                                  fa-file-pdf"></i>
+
+                                    </div>
+
+
+                                    <div class="ms-3">
+
+                                        <h6
+                                                id="fileName"
+                                                class="mb-1">
+
+                                            Resume.pdf
+
+                                        </h6>
+
+                                        <span
+                                                id="status"
+                                                class="status-badge">
+
+                                            UPLOADED
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="detail-row">
+
+                                    <span class="detail-label">
+
+                                        File Type
+
+                                    </span>
+
+                                    <span
+                                            id="fileType"
+                                            class="detail-value">
+
+                                        PDF
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail-row">
+
+                                    <span class="detail-label">
+
+                                        File Size
+
+                                    </span>
+
+                                    <span
+                                            id="fileSize"
+                                            class="detail-value">
+
+                                        -
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail-row">
+
+                                    <span class="detail-label">
+
+                                        Upload Date
+
+                                    </span>
+
+                                    <span
+                                            id="uploadDate"
+                                            class="detail-value">
+
+                                        -
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="d-flex gap-2 mt-4">
+
+
+                                    <button
+                                            id="viewButton"
+                                            class="btn btn-primary">
+
+                                        <i class="fa-solid
+                                                  fa-eye me-2"></i>
+
+                                        View
+
+                                    </button>
+
+
+                                    <button
+                                            id="downloadButton"
+                                            class="btn btn-outline-primary">
+
+                                        <i class="fa-solid
+                                                  fa-download me-2"></i>
+
+                                        Download
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -140,28 +802,374 @@
 
 <script>
 
-    function uploadResume() {
+    /*
+     * =====================================================
+     * LOAD USER'S RESUME
+     * =====================================================
+     */
 
-        const file =
-            document.getElementById("resumeFile").files[0];
+    async function loadResume() {
 
-        if (!file) {
+        const loadingState =
+            document.getElementById("loadingState");
 
-            alert("Please select a resume first.");
+        const emptyState =
+            document.getElementById("emptyState");
 
-            return;
+        const resumeDetails =
+            document.getElementById("resumeDetails");
+
+        try {
+
+            const response =
+                await fetch("/api/resumes/my-resume");
+
+
+            if (response.status === 404) {
+
+                loadingState.style.display = "none";
+
+                emptyState.style.display = "block";
+
+                return;
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to load resume"
+                );
+            }
+
+
+            const resume =
+                await response.json();
+
+
+            loadingState.style.display = "none";
+
+            emptyState.style.display = "none";
+
+            resumeDetails.style.display = "block";
+
+
+            displayResume(resume);
 
         }
 
-        alert(
-            "Resume selected: "
-            + file.name
-            + "\n\nResume upload API will be connected next."
+        catch(error) {
+
+            console.error(error);
+
+            loadingState.style.display = "none";
+
+            emptyState.style.display = "block";
+
+        }
+
+    }
+
+
+    /*
+     * =====================================================
+     * DISPLAY RESUME
+     * =====================================================
+     */
+
+    function displayResume(resume) {
+
+        document.getElementById(
+            "fileName"
+        ).textContent =
+            resume.fileName || "Resume";
+
+
+        document.getElementById(
+            "fileType"
+        ).textContent =
+            getFileType(resume.fileType);
+
+
+        document.getElementById(
+            "fileSize"
+        ).textContent =
+            formatFileSize(resume.fileSize);
+
+
+        document.getElementById(
+            "uploadDate"
+        ).textContent =
+            formatDate(resume.uploadDate);
+
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            resume.status || "UPLOADED";
+
+
+        /*
+         * View button
+         */
+
+        document.getElementById(
+            "viewButton"
+        ).onclick = function() {
+
+            window.open(
+                "/api/resumes/view/" + resume.id,
+                "_blank"
+            );
+
+        };
+
+
+        /*
+         * Download button
+         */
+
+        document.getElementById(
+            "downloadButton"
+        ).onclick = function() {
+
+            window.location.href =
+                "/api/resumes/download/" + resume.id;
+
+        };
+
+    }
+
+
+    /*
+     * =====================================================
+     * UPLOAD RESUME
+     * =====================================================
+     */
+
+    document.getElementById(
+        "resumeForm"
+    ).addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const fileInput =
+                document.getElementById("resumeFile");
+
+
+            const message =
+                document.getElementById("uploadMessage");
+
+
+            if (!fileInput.files.length) {
+
+                message.innerHTML =
+                    `<div class="alert alert-warning">
+                    Please select a resume.
+                 </div>`;
+
+                return;
+            }
+
+
+            const formData =
+                new FormData();
+
+
+            formData.append(
+                "file",
+                fileInput.files[0]
+            );
+
+
+            try {
+
+                message.innerHTML =
+                    `<div class="text-primary">
+                    <div class="spinner-border
+                                spinner-border-sm me-2">
+                    </div>
+                    Uploading resume...
+                 </div>`;
+
+
+                const response =
+                    await fetch(
+                        "/api/resumes/upload",
+                        {
+                            method: "POST",
+                            body: formData
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    const errorText =
+                        await response.text();
+
+                    throw new Error(
+                        errorText ||
+                        "Upload failed"
+                    );
+                }
+
+
+                message.innerHTML =
+                    `<div class="alert alert-success">
+                    <i class="fa-solid
+                              fa-circle-check me-2"></i>
+                    Resume uploaded successfully!
+                 </div>`;
+
+
+                fileInput.value = "";
+
+
+                /*
+                 * Reload resume information
+                 */
+
+                loadResume();
+
+            }
+
+            catch(error) {
+
+                console.error(error);
+
+                message.innerHTML =
+                    `<div class="alert alert-danger">
+                    <i class="fa-solid
+                              fa-circle-exclamation me-2"></i>
+                    ${error.message}
+                 </div>`;
+
+            }
+
+        }
+    );
+
+
+    /*
+     * =====================================================
+     * FORMAT FILE SIZE
+     * =====================================================
+     */
+
+    function formatFileSize(bytes) {
+
+        if (!bytes) {
+
+            return "0 KB";
+
+        }
+
+
+        if (bytes < 1024) {
+
+            return bytes + " Bytes";
+
+        }
+
+
+        if (bytes < 1024 * 1024) {
+
+            return (
+                (bytes / 1024).toFixed(2)
+                + " KB"
+            );
+
+        }
+
+
+        return (
+            (bytes / (1024 * 1024)).toFixed(2)
+            + " MB"
         );
 
     }
 
+
+    /*
+     * =====================================================
+     * FORMAT DATE
+     * =====================================================
+     */
+
+    function formatDate(dateValue) {
+
+        if (!dateValue) {
+
+            return "-";
+
+        }
+
+
+        const date =
+            new Date(dateValue);
+
+
+        return date.toLocaleDateString(
+            "en-IN",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    /*
+     * =====================================================
+     * FILE TYPE
+     * =====================================================
+     */
+
+    function getFileType(type) {
+
+        if (!type) {
+
+            return "Unknown";
+
+        }
+
+
+        if (type.includes("pdf")) {
+
+            return "PDF";
+
+        }
+
+
+        if (type.includes("word")
+            || type.includes("document")) {
+
+            return "DOC/DOCX";
+
+        }
+
+
+        return type;
+
+    }
+
+
+    /*
+     * =====================================================
+     * LOAD ON PAGE OPEN
+     * =====================================================
+     */
+
+    loadResume();
+
 </script>
 
 </body>
+
 </html>

@@ -4,73 +4,625 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
 
-    <title>Interview History | CareerPilotAI</title>
+    <title>CareerPilotAI - Interview History</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+            rel="stylesheet">
 
-    <link rel="stylesheet"
-          href="css/style.css">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+
+        body {
+            margin: 0;
+            background: #f5f7ff;
+            font-family: Arial, sans-serif;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            min-height: 100vh;
+
+            background:
+                    linear-gradient(
+                            180deg,
+                            #312e81,
+                            #4f46e5,
+                            #6366f1
+                    );
+
+            color: white;
+            padding: 25px 18px;
+        }
+
+        .brand {
+            font-size: 23px;
+            font-weight: bold;
+            margin-bottom: 35px;
+        }
+
+        .sidebar a {
+            display: block;
+
+            color: white;
+            text-decoration: none;
+
+            padding: 13px 15px;
+
+            border-radius: 12px;
+
+            margin-bottom: 8px;
+
+            transition: .3s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: rgba(255,255,255,.18);
+            transform: translateX(4px);
+        }
+
+        /* MAIN */
+
+        .main-content {
+            padding: 25px;
+        }
+
+        .topbar {
+            background: white;
+
+            padding: 20px 25px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                    0 5px 20px rgba(0,0,0,.06);
+
+            margin-bottom: 25px;
+        }
+
+        /* STAT CARDS */
+
+        .stat-card {
+            border: none;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            color: white;
+
+            box-shadow:
+                    0 8px 20px rgba(0,0,0,.08);
+
+            transition: .3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: rgba(255,255,255,.2);
+
+            font-size: 20px;
+        }
+
+        .purple {
+            background:
+                    linear-gradient(
+                            135deg,
+                            #7c3aed,
+                            #6366f1
+                    );
+        }
+
+        .blue {
+            background:
+                    linear-gradient(
+                            135deg,
+                            #2563eb,
+                            #06b6d4
+                    );
+        }
+
+        .green {
+            background:
+                    linear-gradient(
+                            135deg,
+                            #059669,
+                            #10b981
+                    );
+        }
+
+        .orange {
+            background:
+                    linear-gradient(
+                            135deg,
+                            #f97316,
+                            #f59e0b
+                    );
+        }
+
+        /* TABLE */
+
+        .history-card {
+            background: white;
+
+            border: none;
+
+            border-radius: 20px;
+
+            box-shadow:
+                    0 8px 25px rgba(0,0,0,.06);
+
+            overflow: hidden;
+        }
+
+        .table {
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+
+        .table thead {
+            background: #f8f7ff;
+        }
+
+        .table th {
+            padding: 16px;
+
+            color: #4b5563;
+
+            font-size: 14px;
+
+            border: none;
+        }
+
+        .table td {
+            padding: 16px;
+
+            border-color: #f1f1f5;
+        }
+
+        .technology-badge {
+            background: #ede9fe;
+
+            color: #6d28d9;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        .difficulty-badge {
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        .score {
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .completed {
+            background: #dcfce7;
+
+            color: #15803d;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        .empty-state {
+            padding: 60px;
+
+            text-align: center;
+
+            color: #6b7280;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 768px) {
+
+            .sidebar {
+                min-height: auto;
+            }
+
+            .main-content {
+                padding: 15px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<div class="sticker one">📚</div>
-<div class="sticker two">🎓</div>
-<div class="sticker three">💻</div>
+<div class="container-fluid">
 
-<div class="page-container">
-
-    <div class="page-header">
-
-        <h2>
-            📚 Interview History
-        </h2>
-
-        <p class="text-muted mb-0">
-            Review your previous interview performance.
-        </p>
-
-    </div>
+    <div class="row">
 
 
-    <div class="modern-card">
+        <!-- SIDEBAR -->
 
-        <div class="table-responsive">
+        <div class="col-md-2 sidebar">
 
-            <table class="table modern-table">
+            <div class="brand text-center">
 
-                <thead>
+                🚀 CareerPilotAI
 
-                <tr>
+            </div>
 
-                    <th>Technology</th>
-                    <th>Difficulty</th>
-                    <th>Score</th>
-                    <th>Status</th>
-                    <th>Date</th>
 
-                </tr>
+            <a href="dashboard.html">
 
-                </thead>
+                <i class="fa-solid fa-house me-2"></i>
 
-                <tbody id="historyTable">
+                Dashboard
 
-                </tbody>
+            </a>
 
-            </table>
+
+            <a href="interview.html">
+
+                <i class="fa-solid fa-robot me-2"></i>
+
+                AI Interview
+
+            </a>
+
+
+            <a href="resume.html">
+
+                <i class="fa-solid fa-file-lines me-2"></i>
+
+                Resume
+
+            </a>
+
+
+            <a href="progress.html">
+
+                <i class="fa-solid fa-chart-line me-2"></i>
+
+                Progress
+
+            </a>
+
+
+            <a href="history.html"
+               class="active">
+
+                <i class="fa-solid fa-clock-rotate-left me-2"></i>
+
+                History
+
+            </a>
+
+
+            <a href="#">
+
+                <i class="fa-solid fa-user me-2"></i>
+
+                Profile
+
+            </a>
+
+
+            <a href="login.html">
+
+                <i class="fa-solid fa-right-from-bracket me-2"></i>
+
+                Logout
+
+            </a>
 
         </div>
 
-        <a href="dashboard.html"
-           class="btn btn-gradient mt-3">
 
-            ← Dashboard
+        <!-- MAIN CONTENT -->
 
-        </a>
+        <div class="col-md-10 main-content">
+
+
+            <!-- TOP BAR -->
+
+            <div class="topbar">
+
+                <h4 class="mb-1">
+
+                    Interview History 📚
+
+                </h4>
+
+                <p class="text-muted mb-0">
+
+                    Review your previous interview attempts and scores.
+
+                </p>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="row g-4 mb-4">
+
+
+                <div class="col-md-3">
+
+                    <div class="stat-card purple">
+
+                        <div class="d-flex
+                                    justify-content-between">
+
+                            <div>
+
+                                <small>
+                                    Total Interviews
+                                </small>
+
+                                <h2
+                                        id="totalInterviews"
+                                        class="mt-2 mb-0">
+
+                                    0
+
+                                </h2>
+
+                            </div>
+
+                            <div class="stat-icon">
+
+                                <i class="fa-solid fa-list-check"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div class="stat-card blue">
+
+                        <div class="d-flex
+                                    justify-content-between">
+
+                            <div>
+
+                                <small>
+                                    Average Score
+                                </small>
+
+                                <h2
+                                        id="averageScore"
+                                        class="mt-2 mb-0">
+
+                                    0
+
+                                </h2>
+
+                            </div>
+
+                            <div class="stat-icon">
+
+                                <i class="fa-solid fa-chart-simple"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div class="stat-card green">
+
+                        <div class="d-flex
+                                    justify-content-between">
+
+                            <div>
+
+                                <small>
+                                    Completed
+                                </small>
+
+                                <h2
+                                        id="completedInterviews"
+                                        class="mt-2 mb-0">
+
+                                    0
+
+                                </h2>
+
+                            </div>
+
+                            <div class="stat-icon">
+
+                                <i class="fa-solid fa-circle-check"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div class="stat-card orange">
+
+                        <div class="d-flex
+                                    justify-content-between">
+
+                            <div>
+
+                                <small>
+                                    Best Score
+                                </small>
+
+                                <h2
+                                        id="bestScore"
+                                        class="mt-2 mb-0">
+
+                                    0
+
+                                </h2>
+
+                            </div>
+
+                            <div class="stat-icon">
+
+                                <i class="fa-solid fa-trophy"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HISTORY TABLE -->
+
+            <div class="card history-card">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex
+                                justify-content-between
+                                align-items-center
+                                mb-4">
+
+                        <div>
+
+                            <h5 class="mb-1">
+
+                                Previous Interviews
+
+                            </h5>
+
+                            <small class="text-muted">
+
+                                Your completed interview attempts
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table">
+
+                            <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Technology</th>
+
+                                <th>Difficulty</th>
+
+                                <th>Questions</th>
+
+                                <th>Score</th>
+
+                                <th>Status</th>
+
+                                <th>Date</th>
+
+                            </tr>
+
+                            </thead>
+
+
+                            <tbody id="historyTable">
+
+                            <tr>
+
+                                <td colspan="7"
+                                    class="text-center p-5">
+
+                                    <div
+                                            class="spinner-border text-primary">
+                                    </div>
+
+                                    <p class="mt-3">
+
+                                        Loading interview history...
+
+                                    </p>
+
+                                </td>
+
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -79,77 +631,294 @@
 
 <script>
 
+    let interviews = [];
+
+
     async function loadHistory() {
 
         try {
 
-            const response = await fetch(
-                "http://localhost:8081/api/interview/history"
+            const response =
+                await fetch("/api/interview/history");
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to load history"
+                );
+
+            }
+
+
+            interviews =
+                await response.json();
+
+
+            updateStatistics(
+                interviews
             );
 
-            const interviews = await response.json();
+            displayHistory(
+                interviews
+            );
 
-            let rows = "";
+        }
 
-            interviews.forEach(interview => {
+        catch(error) {
 
-                rows += `
+            console.error(error);
+
+            document.getElementById(
+                "historyTable"
+            ).innerHTML = `
 
             <tr>
 
-                <td>
-                    💻 ${interview.technology}
-                </td>
+                <td colspan="7"
+                    class="empty-state">
 
-                <td>
-                    ${interview.difficulty}
-                </td>
+                    <i class="fa-solid
+                              fa-triangle-exclamation
+                              fa-2x
+                              text-danger">
+                    </i>
 
-                <td>
+                    <h5 class="mt-3">
 
-                    <span class="badge rounded-pill text-bg-primary">
+                        Unable to load history
 
-                        ${interview.score}
+                    </h5>
 
-                    </span>
+                    <p>
 
-                </td>
+                        Please check the server
+                        and try again.
 
-                <td>
+                    </p>
 
-                    <span class="badge rounded-pill text-bg-success">
-
-                        ✓ ${interview.status}
-
-                    </span>
-
-                </td>
-
-                <td>
-                    ${interview.interviewDate}
                 </td>
 
             </tr>
 
-            `;
-
-            });
-
-            document.getElementById("historyTable").innerHTML = rows;
-
-        } catch(error) {
-
-            console.error(error);
-
-            alert("Unable to load interview history.");
+        `;
 
         }
 
     }
+
+
+    function updateStatistics(data) {
+
+        const total =
+            data.length;
+
+
+        const completed =
+            data.filter(
+                item =>
+                    item.status === "COMPLETED"
+            ).length;
+
+
+        const scores =
+            data
+                .map(item =>
+                    Number(item.score) || 0
+                );
+
+
+        const totalScore =
+            scores.reduce(
+                (sum, score) =>
+                    sum + score,
+                0
+            );
+
+
+        const average =
+            total > 0
+                ? (totalScore / total).toFixed(1)
+                : 0;
+
+
+        const best =
+            scores.length > 0
+                ? Math.max(...scores)
+                : 0;
+
+
+        document.getElementById(
+            "totalInterviews"
+        ).textContent = total;
+
+
+        document.getElementById(
+            "averageScore"
+        ).textContent = average;
+
+
+        document.getElementById(
+            "completedInterviews"
+        ).textContent = completed;
+
+
+        document.getElementById(
+            "bestScore"
+        ).textContent = best;
+
+    }
+
+
+    function displayHistory(data) {
+
+        const table =
+            document.getElementById(
+                "historyTable"
+            );
+
+
+        if(data.length === 0) {
+
+            table.innerHTML = `
+
+            <tr>
+
+                <td colspan="7"
+                    class="empty-state">
+
+                    <i class="fa-solid
+                              fa-clock-rotate-left
+                              fa-2x">
+                    </i>
+
+                    <h5 class="mt-3">
+
+                        No interview history
+
+                    </h5>
+
+                    <p>
+
+                        Complete your first
+                        AI interview to see it here.
+
+                    </p>
+
+                    <a href="interview.html"
+                       class="btn btn-primary mt-2">
+
+                        Start Interview
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+        `;
+
+            return;
+
+        }
+
+
+        table.innerHTML =
+            data.map(item => {
+
+                const date =
+                    item.interviewDate
+                        ? new Date(
+                            item.interviewDate
+                        ).toLocaleString()
+                        : "-";
+
+
+                return `
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+                            #${item.id}
+                        </strong>
+
+                    </td>
+
+
+                    <td>
+
+                        <span
+                            class="technology-badge">
+
+                            ${item.technology}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <span
+                            class="difficulty-badge">
+
+                            ${item.difficulty}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        ${item.totalQuestions}
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="score">
+
+                            ${item.score}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="completed">
+
+                            ${item.status}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        ${date}
+
+                    </td>
+
+                </tr>
+
+            `;
+
+            }).join("");
+
+    }
+
 
     loadHistory();
 
 </script>
 
 </body>
+
 </html>

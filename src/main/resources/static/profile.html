@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>CareerPilotAI - Profile</title>
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+
+        body {
+            margin: 0;
+            background: #f5f7ff;
+            font-family: Arial, sans-serif;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+
+            min-height: 100vh;
+
+            background:
+                    linear-gradient(
+                            180deg,
+                            #312e81,
+                            #4f46e5,
+                            #6366f1
+                    );
+
+            color: white;
+
+            padding: 25px 18px;
+
+        }
+
+        .brand {
+
+            font-size: 23px;
+
+            font-weight: bold;
+
+            margin-bottom: 35px;
+
+        }
+
+        .sidebar a {
+
+            display: block;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 13px 15px;
+
+            border-radius: 12px;
+
+            margin-bottom: 8px;
+
+            transition: .3s;
+
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+
+            background:
+                    rgba(255,255,255,.18);
+
+            transform:
+                    translateX(4px);
+
+        }
+
+        /* MAIN */
+
+        .main-content {
+
+            padding: 25px;
+
+        }
+
+        .topbar {
+
+            background: white;
+
+            padding: 20px 25px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                    0 5px 20px rgba(0,0,0,.06);
+
+            margin-bottom: 25px;
+
+        }
+
+        /* PROFILE HEADER */
+
+        .profile-header {
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #4f46e5,
+                            #7c3aed,
+                            #6366f1
+                    );
+
+            border-radius: 22px;
+
+            padding: 35px;
+
+            color: white;
+
+            position: relative;
+
+            overflow: hidden;
+
+            box-shadow:
+                    0 10px 30px rgba(79,70,229,.25);
+
+        }
+
+        .profile-header::before {
+
+            content: "🚀";
+
+            position: absolute;
+
+            font-size: 130px;
+
+            right: 40px;
+
+            top: -30px;
+
+            opacity: .12;
+
+        }
+
+        .profile-avatar {
+
+            width: 95px;
+
+            height: 95px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            color: #4f46e5;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 38px;
+
+            font-weight: bold;
+
+            border: 5px solid rgba(255,255,255,.35);
+
+            box-shadow:
+                    0 5px 15px rgba(0,0,0,.15);
+
+        }
+
+        .profile-name {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+        }
+
+        .profile-role {
+
+            opacity: .85;
+
+        }
+
+        /* CARDS */
+
+        .profile-card {
+
+            background: white;
+
+            border: none;
+
+            border-radius: 20px;
+
+            box-shadow:
+                    0 8px 25px rgba(0,0,0,.06);
+
+            height: 100%;
+
+        }
+
+        .card-title {
+
+            font-weight: bold;
+
+            color: #1f2937;
+
+        }
+
+        .info-row {
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 16px 0;
+
+            border-bottom:
+                    1px solid #f1f1f5;
+
+        }
+
+        .info-row:last-child {
+
+            border-bottom: none;
+
+        }
+
+        .info-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #ede9fe;
+
+            color: #6d28d9;
+
+            margin-right: 15px;
+
+        }
+
+        .info-label {
+
+            font-size: 12px;
+
+            color: #6b7280;
+
+        }
+
+        .info-value {
+
+            font-weight: 600;
+
+            color: #1f2937;
+
+        }
+
+        /* BADGE */
+
+        .student-badge {
+
+            display: inline-block;
+
+            background: #ede9fe;
+
+            color: #6d28d9;
+
+            padding: 7px 14px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+        }
+
+        /* QUICK ACTION */
+
+        .action-card {
+
+            padding: 20px;
+
+            border-radius: 16px;
+
+            background: #f8f7ff;
+
+            border: 1px solid #eeeefc;
+
+            transition: .3s;
+
+        }
+
+        .action-card:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                    0 8px 20px rgba(0,0,0,.06);
+
+        }
+
+        .action-icon {
+
+            font-size: 25px;
+
+            color: #4f46e5;
+
+            margin-bottom: 10px;
+
+        }
+
+        @media(max-width:768px) {
+
+            .sidebar {
+
+                min-height: auto;
+
+            }
+
+            .main-content {
+
+                padding: 15px;
+
+            }
+
+            .profile-header {
+
+                text-align: center;
+
+            }
+
+            .profile-avatar {
+
+                margin: auto;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+
+        <!-- SIDEBAR -->
+
+        <div class="col-md-2 sidebar">
+
+            <div class="brand text-center">
+
+                🚀 CareerPilotAI
+
+            </div>
+
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-house me-2"></i>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="interview.html">
+
+                <i class="fa-solid fa-robot me-2"></i>
+
+                AI Interview
+
+            </a>
+
+
+            <a href="resume.html">
+
+                <i class="fa-solid fa-file-lines me-2"></i>
+
+                Resume
+
+            </a>
+
+
+            <a href="progress.html">
+
+                <i class="fa-solid fa-chart-line me-2"></i>
+
+                Progress
+
+            </a>
+
+
+            <a href="history.html">
+
+                <i class="fa-solid fa-clock-rotate-left me-2"></i>
+
+                History
+
+            </a>
+
+
+            <a href="profile.html"
+               class="active">
+
+                <i class="fa-solid fa-user me-2"></i>
+
+                Profile
+
+            </a>
+
+
+            <a href="login.html">
+
+                <i class="fa-solid fa-right-from-bracket me-2"></i>
+
+                Logout
+
+            </a>
+
+        </div>
+
+
+        <!-- MAIN CONTENT -->
+
+        <div class="col-md-10 main-content">
+
+
+            <!-- TOPBAR -->
+
+            <div class="topbar">
+
+                <h4 class="mb-1">
+
+                    My Profile 👤
+
+                </h4>
+
+                <p class="text-muted mb-0">
+
+                    View your CareerPilotAI account information.
+
+                </p>
+
+            </div>
+
+
+            <!-- PROFILE HEADER -->
+
+            <div class="profile-header mb-4">
+
+                <div class="d-flex
+                            align-items-center
+                            gap-4">
+
+                    <div
+                            class="profile-avatar"
+                            id="profileAvatar">
+
+                        U
+
+                    </div>
+
+
+                    <div>
+
+                        <div
+                                class="profile-name"
+                                id="profileName">
+
+                            Loading...
+
+                        </div>
+
+                        <div
+                                class="profile-role"
+                                id="profileRole">
+
+                            Student
+
+                        </div>
+
+                        <span
+                                class="student-badge mt-2"
+                                id="roleBadge">
+
+                            STUDENT
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- ACCOUNT INFORMATION -->
+
+                <div class="col-md-7">
+
+                    <div class="card profile-card">
+
+                        <div class="card-body p-4">
+
+                            <h5 class="card-title mb-4">
+
+                                <i class="fa-solid
+                                          fa-user-circle
+                                          text-primary me-2"></i>
+
+                                Account Information
+
+                            </h5>
+
+
+                            <!-- NAME -->
+
+                            <div class="info-row">
+
+                                <div class="info-icon">
+
+                                    <i class="fa-solid fa-user"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <div class="info-label">
+
+                                        Full Name
+
+                                    </div>
+
+                                    <div
+                                            class="info-value"
+                                            id="fullName">
+
+                                        Loading...
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- EMAIL -->
+
+                            <div class="info-row">
+
+                                <div class="info-icon">
+
+                                    <i class="fa-solid fa-envelope"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <div class="info-label">
+
+                                        Email Address
+
+                                    </div>
+
+                                    <div
+                                            class="info-value"
+                                            id="email">
+
+                                        Loading...
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ROLE -->
+
+                            <div class="info-row">
+
+                                <div class="info-icon">
+
+                                    <i class="fa-solid fa-id-badge"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <div class="info-label">
+
+                                        Account Role
+
+                                    </div>
+
+                                    <div
+                                            class="info-value"
+                                            id="role">
+
+                                        Student
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- CREATED -->
+
+                            <div class="info-row">
+
+                                <div class="info-icon">
+
+                                    <i class="fa-solid fa-calendar"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <div class="info-label">
+
+                                        Account Created
+
+                                    </div>
+
+                                    <div
+                                            class="info-value"
+                                            id="createdAt">
+
+                                        Loading...
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="col-md-5">
+
+                    <div class="card profile-card">
+
+                        <div class="card-body p-4">
+
+                            <h5 class="card-title mb-4">
+
+                                Quick Actions ⚡
+
+                            </h5>
+
+
+                            <div class="action-card mb-3">
+
+                                <div class="action-icon">
+
+                                    <i class="fa-solid
+                                              fa-robot"></i>
+
+                                </div>
+
+                                <h6>
+
+                                    Practice Interview
+
+                                </h6>
+
+                                <p class="text-muted small">
+
+                                    Improve your interview
+                                    performance with AI.
+
+                                </p>
+
+                                <a
+                                        href="interview.html"
+                                        class="btn btn-primary btn-sm">
+
+                                    Start Interview
+
+                                </a>
+
+                            </div>
+
+
+                            <div class="action-card mb-3">
+
+                                <div class="action-icon">
+
+                                    <i class="fa-solid
+                                              fa-file-lines"></i>
+
+                                </div>
+
+                                <h6>
+
+                                    Manage Resume
+
+                                </h6>
+
+                                <p class="text-muted small">
+
+                                    Upload and manage your resume.
+
+                                </p>
+
+                                <a
+                                        href="resume.html"
+                                        class="btn btn-success btn-sm">
+
+                                    View Resume
+
+                                </a>
+
+                            </div>
+
+
+                            <div class="action-card">
+
+                                <div class="action-icon">
+
+                                    <i class="fa-solid
+                                              fa-chart-line"></i>
+
+                                </div>
+
+                                <h6>
+
+                                    View Progress
+
+                                </h6>
+
+                                <p class="text-muted small">
+
+                                    Track your interview preparation.
+
+                                </p>
+
+                                <a
+                                        href="progress.html"
+                                        class="btn btn-warning btn-sm">
+
+                                    View Progress
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /*
+     * IMPORTANT:
+     *
+     * Change this URL only if your existing
+     * project uses another profile endpoint.
+     */
+
+    async function loadProfile() {
+
+        try {
+
+            const response =
+                await fetch("/api/users/profile");
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to load profile"
+                );
+
+            }
+
+
+            const user =
+                await response.json();
+
+
+            displayProfile(user);
+
+        }
+
+        catch(error) {
+
+            console.error(error);
+
+            /*
+             * Temporary fallback.
+             *
+             * If your backend doesn't have
+             * /api/users/profile yet, the page
+             * will still remain attractive.
+             */
+
+            document.getElementById(
+                "profileName"
+            ).textContent =
+                "Student";
+
+
+            document.getElementById(
+                "fullName"
+            ).textContent =
+                "Student";
+
+
+            document.getElementById(
+                "email"
+            ).textContent =
+                "Logged in user";
+
+
+            document.getElementById(
+                "role"
+            ).textContent =
+                "STUDENT";
+
+
+            document.getElementById(
+                "createdAt"
+            ).textContent =
+                "Available in account";
+
+        }
+
+    }
+
+
+    function displayProfile(user) {
+
+        const name =
+            user.fullName || "Student";
+
+
+        const email =
+            user.email || "-";
+
+
+        const role =
+            user.role || "STUDENT";
+
+
+        const created =
+            user.createdAt
+                ? new Date(
+                    user.createdAt
+                ).toLocaleDateString()
+                : "-";
+
+
+        document.getElementById(
+            "profileName"
+        ).textContent =
+            name;
+
+
+        document.getElementById(
+            "fullName"
+        ).textContent =
+            name;
+
+
+        document.getElementById(
+            "email"
+        ).textContent =
+            email;
+
+
+        document.getElementById(
+            "role"
+        ).textContent =
+            role;
+
+
+        document.getElementById(
+            "profileRole"
+        ).textContent =
+            role === "ADMIN"
+                ? "Administrator"
+                : "Student";
+
+
+        document.getElementById(
+            "roleBadge"
+        ).textContent =
+            role;
+
+
+        document.getElementById(
+            "createdAt"
+        ).textContent =
+            created;
+
+
+        /*
+         * First letter of user's name
+         * becomes profile avatar.
+         */
+
+        document.getElementById(
+            "profileAvatar"
+        ).textContent =
+            name
+                .charAt(0)
+                .toUpperCase();
+
+    }
+
+
+    loadProfile();
+
+</script>
+
+</body>
+
+</html>

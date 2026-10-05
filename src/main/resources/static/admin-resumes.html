@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>CareerPilotAI - Resume Management</title>
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+    <style>
+
+        body {
+            margin: 0;
+            background: #f5f7ff;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+
+            min-height: 100vh;
+
+            background:
+                    linear-gradient(
+                            180deg,
+                            #312e81,
+                            #4f46e5,
+                            #6366f1
+                    );
+
+            color: white;
+
+            padding: 25px 18px;
+        }
+
+
+        .brand {
+
+            font-size: 23px;
+
+            font-weight: bold;
+
+            margin-bottom: 35px;
+        }
+
+
+        .sidebar a {
+
+            display: block;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 13px 15px;
+
+            border-radius: 12px;
+
+            margin-bottom: 8px;
+
+            transition: .3s;
+        }
+
+
+        .sidebar a:hover,
+        .sidebar a.active {
+
+            background:
+                    rgba(255,255,255,.18);
+
+            transform:
+                    translateX(4px);
+        }
+
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main-content {
+
+            padding: 25px;
+        }
+
+
+        .topbar {
+
+            background: white;
+
+            padding: 20px 25px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                    0 5px 20px rgba(0,0,0,.06);
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #4f46e5,
+                            #7c3aed,
+                            #6366f1
+                    );
+
+            color: white;
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            margin-bottom: 25px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            box-shadow:
+                    0 10px 30px
+                    rgba(79,70,229,.25);
+        }
+
+
+        .hero::after {
+
+            content: "📄";
+
+            position: absolute;
+
+            right: 50px;
+
+            top: -30px;
+
+            font-size: 140px;
+
+            opacity: .12;
+        }
+
+
+        /* =========================
+           STAT CARD
+        ========================= */
+
+        .stat-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            box-shadow:
+                    0 5px 20px rgba(0,0,0,.06);
+
+            margin-bottom: 25px;
+        }
+
+
+        .stat-icon {
+
+            width: 55px;
+
+            height: 55px;
+
+            border-radius: 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 23px;
+
+            background: #ede9fe;
+
+            color: #4f46e5;
+        }
+
+
+        /* =========================
+           TABLE CARD
+        ========================= */
+
+        .table-card {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow:
+                    0 8px 25px rgba(0,0,0,.06);
+        }
+
+
+        .table {
+
+            vertical-align: middle;
+        }
+
+
+        .table thead th {
+
+            background: #f8f9ff;
+
+            color: #4b5563;
+
+            font-size: 14px;
+
+            border-bottom: none;
+        }
+
+
+        .table tbody tr {
+
+            transition: .2s;
+        }
+
+
+        .table tbody tr:hover {
+
+            background: #f8f9ff;
+        }
+
+
+        /* =========================
+           FILE ICON
+        ========================= */
+
+        .file-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #fee2e2;
+
+            color: #dc2626;
+
+            font-size: 20px;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status-badge {
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .action-btn {
+
+            width: 36px;
+
+            height: 36px;
+
+            border-radius: 10px;
+
+            border: none;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-right: 5px;
+
+            transition: .2s;
+        }
+
+
+        .view-btn {
+
+            background: #e0e7ff;
+
+            color: #4338ca;
+        }
+
+
+        .download-btn {
+
+            background: #dcfce7;
+
+            color: #15803d;
+        }
+
+
+        .delete-btn {
+
+            background: #fee2e2;
+
+            color: #dc2626;
+        }
+
+
+        .action-btn:hover {
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty-state {
+
+            text-align: center;
+
+            padding: 60px 20px;
+
+            color: #6b7280;
+        }
+
+
+        .empty-state i {
+
+            font-size: 60px;
+
+            color: #c7d2fe;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-box {
+
+            max-width: 350px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width:768px) {
+
+            .sidebar {
+
+                min-height: auto;
+            }
+
+            .main-content {
+
+                padding: 15px;
+            }
+
+            .table-card {
+
+                overflow-x: auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container-fluid">
+
+    <div class="row">
+
+
+        <!-- =========================
+             SIDEBAR
+        ========================= -->
+
+        <div class="col-md-2 sidebar">
+
+            <div class="brand text-center">
+
+                🚀 CareerPilotAI
+
+            </div>
+
+
+            <a href="admin-dashboard.html">
+
+                <i class="fa-solid fa-chart-pie me-2"></i>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="#">
+
+                <i class="fa-solid fa-users me-2"></i>
+
+                Users
+
+            </a>
+
+
+            <a href="#">
+
+                <i class="fa-solid fa-microphone me-2"></i>
+
+                Interviews
+
+            </a>
+
+
+            <a href="admin-resumes.html"
+               class="active">
+
+                <i class="fa-solid fa-file-lines me-2"></i>
+
+                Resumes
+
+            </a>
+
+
+            <a href="#">
+
+                <i class="fa-solid fa-chart-line me-2"></i>
+
+                Progress
+
+            </a>
+
+
+            <a href="login.html">
+
+                <i class="fa-solid fa-right-from-bracket me-2"></i>
+
+                Logout
+
+            </a>
+
+        </div>
+
+
+        <!-- =========================
+             MAIN
+        ========================= -->
+
+        <div class="col-md-10 main-content">
+
+
+            <!-- TOPBAR -->
+
+            <div class="topbar">
+
+                <h4 class="mb-1">
+
+                    Resume Management 📄
+
+                </h4>
+
+                <p class="text-muted mb-0">
+
+                    Manage resumes uploaded by CareerPilotAI users.
+
+                </p>
+
+            </div>
+
+
+            <!-- HERO -->
+
+            <div class="hero">
+
+                <h2>
+
+                    Resume Management
+
+                </h2>
+
+                <p class="mb-0">
+
+                    View, download and manage student resumes
+                    from one place.
+
+                </p>
+
+            </div>
+
+
+            <!-- STAT -->
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <div class="stat-card">
+
+                        <div class="d-flex
+                                    align-items-center">
+
+                            <div class="stat-icon">
+
+                                <i class="fa-solid
+                                          fa-file-lines"></i>
+
+                            </div>
+
+                            <div class="ms-3">
+
+                                <small class="text-muted">
+
+                                    Total Resumes
+
+                                </small>
+
+                                <h3
+                                        id="totalResumes"
+                                        class="mb-0">
+
+                                    0
+
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-card">
+
+
+                <div class="d-flex
+                            justify-content-between
+                            align-items-center
+                            mb-4
+                            flex-wrap
+                            gap-3">
+
+
+                    <h5 class="mb-0">
+
+                        <i class="fa-solid
+                                  fa-folder-open
+                                  text-primary me-2"></i>
+
+                        Uploaded Resumes
+
+                    </h5>
+
+
+                    <div class="input-group search-box">
+
+                        <span class="input-group-text">
+
+                            <i class="fa-solid fa-search"></i>
+
+                        </span>
+
+                        <input
+                                type="text"
+                                id="searchInput"
+                                class="form-control"
+                                placeholder="Search resume...">
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOADING -->
+
+                <div
+                        id="loading"
+                        class="text-center py-5">
+
+                    <div
+                            class="spinner-border text-primary">
+
+                    </div>
+
+                    <p class="text-muted mt-2">
+
+                        Loading resumes...
+
+                    </p>
+
+                </div>
+
+
+                <!-- TABLE -->
+
+                <div
+                        id="tableContainer"
+                        style="display:none;">
+
+                    <div class="table-responsive">
+
+                        <table class="table">
+
+                            <thead>
+
+                            <tr>
+
+                                <th>Resume</th>
+
+                                <th>Student</th>
+
+                                <th>Email</th>
+
+                                <th>Type</th>
+
+                                <th>Size</th>
+
+                                <th>Date</th>
+
+                                <th>Status</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                            </thead>
+
+
+                            <tbody id="resumeTableBody">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMPTY -->
+
+                <div
+                        id="emptyState"
+                        class="empty-state"
+                        style="display:none;">
+
+                    <i class="fa-regular
+                              fa-folder-open
+                              d-block"></i>
+
+                    <h5>
+
+                        No Resumes Found
+
+                    </h5>
+
+                    <p>
+
+                        No students have uploaded
+                        resumes yet.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+    let allResumes = [];
+
+
+    /* =====================================================
+       LOAD RESUMES
+    ===================================================== */
+
+    async function loadResumes() {
+
+        try {
+
+            const response =
+                await fetch("/api/admin/resumes");
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to load resumes"
+                );
+            }
+
+
+            allResumes =
+                await response.json();
+
+
+            document.getElementById(
+                "loading"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "totalResumes"
+            ).textContent =
+                allResumes.length;
+
+
+            renderResumes(allResumes);
+
+        }
+
+        catch(error) {
+
+            console.error(error);
+
+            document.getElementById(
+                "loading"
+            ).innerHTML = `
+
+            <div class="alert alert-danger">
+
+                <i class="fa-solid
+                          fa-circle-exclamation me-2">
+                </i>
+
+                Unable to load resumes.
+
+            </div>
+
+        `;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       RENDER RESUMES
+    ===================================================== */
+
+    function renderResumes(resumes) {
+
+        const tableContainer =
+            document.getElementById(
+                "tableContainer"
+            );
+
+        const emptyState =
+            document.getElementById(
+                "emptyState"
+            );
+
+        const tableBody =
+            document.getElementById(
+                "resumeTableBody"
+            );
+
+
+        tableBody.innerHTML = "";
+
+
+        if (resumes.length === 0) {
+
+            tableContainer.style.display = "none";
+
+            emptyState.style.display = "block";
+
+            return;
+        }
+
+
+        emptyState.style.display = "none";
+
+        tableContainer.style.display = "block";
+
+
+        resumes.forEach(resume => {
+
+
+            const row =
+                document.createElement("tr");
+
+
+            const user =
+                resume.user || {};
+
+
+            const fileType =
+                getFileType(
+                    resume.fileType
+                );
+
+
+            const fileIcon =
+                fileType === "PDF"
+                    ? "fa-file-pdf"
+                    : "fa-file-word";
+
+
+            row.innerHTML = `
+
+            <td>
+
+                <div class="d-flex
+                            align-items-center">
+
+                    <div class="file-icon">
+
+                        <i class="fa-solid
+                                  ${fileIcon}">
+                        </i>
+
+                    </div>
+
+                    <div class="ms-2">
+
+                        <strong>
+
+                            ${escapeHtml(
+                resume.fileName ||
+                "Resume"
+            )}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td>
+
+                ${escapeHtml(
+                user.fullName ||
+                "Unknown"
+            )}
+
+            </td>
+
+
+            <td>
+
+                ${escapeHtml(
+                user.email ||
+                "-"
+            )}
+
+            </td>
+
+
+            <td>
+
+                ${fileType}
+
+            </td>
+
+
+            <td>
+
+                ${formatFileSize(
+                resume.fileSize
+            )}
+
+            </td>
+
+
+            <td>
+
+                ${formatDate(
+                resume.uploadDate
+            )}
+
+            </td>
+
+
+            <td>
+
+                <span class="status-badge">
+
+                    ${escapeHtml(
+                resume.status ||
+                "UPLOADED"
+            )}
+
+                </span>
+
+            </td>
+
+
+            <td>
+
+                <button
+                    class="action-btn view-btn"
+                    title="View"
+                    onclick="viewResume(${resume.id})">
+
+                    <i class="fa-solid fa-eye"></i>
+
+                </button>
+
+
+                <button
+                    class="action-btn download-btn"
+                    title="Download"
+                    onclick="downloadResume(${resume.id})">
+
+                    <i class="fa-solid fa-download"></i>
+
+                </button>
+
+
+                <button
+                    class="action-btn delete-btn"
+                    title="Delete"
+                    onclick="deleteResume(${resume.id})">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </td>
+
+        `;
+
+
+            tableBody.appendChild(row);
+
+        });
+
+    }
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    document.getElementById(
+        "searchInput"
+    ).addEventListener(
+        "input",
+        function() {
+
+            const search =
+                this.value
+                    .toLowerCase()
+                    .trim();
+
+
+            const filtered =
+                allResumes.filter(
+                    resume => {
+
+                        const user =
+                            resume.user || {};
+
+
+                        return (
+
+                            (resume.fileName || "")
+                                .toLowerCase()
+                                .includes(search)
+
+                            ||
+
+                            (user.fullName || "")
+                                .toLowerCase()
+                                .includes(search)
+
+                            ||
+
+                            (user.email || "")
+                                .toLowerCase()
+                                .includes(search)
+
+                        );
+
+                    }
+                );
+
+
+            renderResumes(filtered);
+
+        }
+    );
+
+
+    /* =====================================================
+       VIEW
+    ===================================================== */
+
+    function viewResume(id) {
+
+        window.open(
+            "/api/admin/resumes/view/" + id,
+            "_blank"
+        );
+
+    }
+
+
+    /* =====================================================
+       DOWNLOAD
+    ===================================================== */
+
+    function downloadResume(id) {
+
+        window.location.href =
+            "/api/admin/resumes/download/" + id;
+
+    }
+
+
+    /* =====================================================
+       DELETE
+    ===================================================== */
+
+    async function deleteResume(id) {
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to delete this resume?"
+            );
+
+
+        if (!confirmed) {
+
+            return;
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/admin/resumes/" + id,
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Delete failed"
+                );
+            }
+
+
+            alert(
+                "Resume deleted successfully."
+            );
+
+
+            loadResumes();
+
+        }
+
+        catch(error) {
+
+            console.error(error);
+
+            alert(
+                "Unable to delete resume."
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       FILE SIZE
+    ===================================================== */
+
+    function formatFileSize(bytes) {
+
+        if (!bytes) {
+
+            return "0 KB";
+        }
+
+
+        if (bytes < 1024) {
+
+            return bytes + " Bytes";
+        }
+
+
+        if (bytes < 1024 * 1024) {
+
+            return (
+                (bytes / 1024).toFixed(1)
+                + " KB"
+            );
+        }
+
+
+        return (
+            (bytes / (1024 * 1024)).toFixed(1)
+            + " MB"
+        );
+
+    }
+
+
+    /* =====================================================
+       DATE
+    ===================================================== */
+
+    function formatDate(dateValue) {
+
+        if (!dateValue) {
+
+            return "-";
+        }
+
+
+        const date =
+            new Date(dateValue);
+
+
+        return date.toLocaleDateString(
+            "en-IN",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       FILE TYPE
+    ===================================================== */
+
+    function getFileType(type) {
+
+        if (!type) {
+
+            return "Unknown";
+        }
+
+
+        if (type.includes("pdf")) {
+
+            return "PDF";
+        }
+
+
+        if (
+            type.includes("word") ||
+            type.includes("document")
+        ) {
+
+            return "DOC/DOCX";
+        }
+
+
+        return type;
+
+    }
+
+
+    /* =====================================================
+       HTML SAFETY
+    ===================================================== */
+
+    function escapeHtml(value) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent =
+            value;
+
+        return div.innerHTML;
+
+    }
+
+
+    /* =====================================================
+       LOAD PAGE
+    ===================================================== */
+
+    loadResumes();
+
+</script>
+
+
+</body>
+
+</html>

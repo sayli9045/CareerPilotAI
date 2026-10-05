@@ -563,8 +563,7 @@
                 </div>
 
 
-                <form id="loginForm">
-
+                <form action="/api/users/login" method="post">
 
                     <!-- EMAIL -->
 
@@ -580,7 +579,7 @@
 
                             <input
                                     type="email"
-                                    id="email"
+                                    name="email"
                                     placeholder="Enter your email"
                                     required
                             >
@@ -604,7 +603,7 @@
 
                             <input
                                     type="password"
-                                    id="password"
+                                    name="password"
                                     placeholder="Enter your password"
                                     required
                             >
@@ -651,7 +650,6 @@
 
                     </button>
 
-
                 </form>
 
 
@@ -674,74 +672,6 @@
     </div>
 
 </div>
-
-
-<script>
-
-    document.getElementById("loginForm")
-        .addEventListener("submit", async function(e) {
-
-            e.preventDefault();
-
-
-            const request = {
-
-                email:
-                document.getElementById("email").value,
-
-                password:
-                document.getElementById("password").value
-
-            };
-
-
-            try {
-
-                const response = await fetch(
-                    "http://localhost:8081/api/users/login",
-                    {
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-
-                        body: JSON.stringify(request)
-                    }
-                );
-
-
-                const result = await response.text();
-
-
-                if (response.ok) {
-
-                    alert(result);
-
-                    window.location.href =
-                        "dashboard.html";
-
-                } else {
-
-                    alert(
-                        "Login failed: " + result
-                    );
-
-                }
-
-            } catch(error) {
-
-                console.error(error);
-
-                alert(
-                    "Unable to connect to CareerPilotAI server."
-                );
-
-            }
-
-        });
-
-</script>
 
 
 </body>
